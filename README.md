@@ -14,8 +14,8 @@ Summary: C++ standard library
 Current build status
 ====================
 
-![Linux disabled](https://img.shields.io/badge/linux-disabled-lightgrey.svg)
-![OSX disabled](https://img.shields.io/badge/OSX-disabled-lightgrey.svg)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/compiler-rt-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/compiler-rt-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/compiler-rt-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/compiler-rt-feedstock)
 ![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
 
 Current release info

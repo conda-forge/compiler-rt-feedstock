@@ -14,9 +14,7 @@ source:
 
 build:
   number: {{ build_number }}
-  skip: true  # [not py36]
-  features:   # [win and py36]
-    - vc14    # [win and py36]
+  skip: true  # [win and vc!=14]
 
 requirements:
   build:
@@ -28,6 +26,8 @@ requirements:
 
     # "compiling .pyc files" fails without this
     - python
+
+  host:
     - clangdev =={{ version }}
     - libcxx =={{ version }}
 
@@ -36,8 +36,6 @@ requirements:
     - libcxx =={{ version }}
 
 test:
-  requires:
-    - python {{ environ['PY_VER'] + '*' }}  # [win]
   files:
     - test_sources
     - compile_test.sh   # [unix]

@@ -1,7 +1,7 @@
 {% set name = "compiler-rt" %}
-{% set version = "6.0.1" %}
+{% set version = "7.0.0" %}
 {% set build_number = 0 %}
-{% set sha256 = "f4cd1e15e7d5cb708f9931d4844524e4904867240c306b06a4287b22ac1c99b9" %}
+{% set sha256 = "bdec7fe3cf2c85f55656c07dfb0bd93ae46f2b3dd8f33ff3ad6e7586f4c670d6" %}
 
 package:
   name: {{ name }}

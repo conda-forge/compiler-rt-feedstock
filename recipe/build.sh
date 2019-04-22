@@ -1,8 +1,8 @@
 if [[ "$target_platform" == "osx-64" ]]; then
     export CONDA_BUILD_SYSROOT_BACKUP=${CONDA_BUILD_SYSROOT}
     conda install -p $BUILD_PREFIX --quiet --yes clangxx_osx-64=${cxx_compiler_version}
-    rm $BUILD_PREFIX/bin/libc++.dylib
-    rm $BUILD_PREFIX/bin/libc++abi.dylib
+    rm $BUILD_PREFIX/lib/libc++.dylib
+    rm $BUILD_PREFIX/lib/libc++abi.dylib
     export CONDA_BUILD_SYSROOT=${CONDA_BUILD_SYSROOT_BACKUP}
     EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DDARWIN_osxsim_ARCHS=x86_64 -DCMAKE_LIBTOOL=$LIBTOOL"
 fi

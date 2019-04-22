@@ -20,6 +20,7 @@ requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}   # [not osx]
+    - python
   host:
     - clangdev =={{ version }}
     - llvmdev =={{ version }}

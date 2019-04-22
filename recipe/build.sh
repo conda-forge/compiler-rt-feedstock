@@ -12,8 +12,6 @@ cmake \
     -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH="${PREFIX}/lib" \
     -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH="${PREFIX}/lib" \
     -DCMAKE_MODULE_PATH:PATH="${PREFIX}/lib/cmake" \
-    -DCMAKE_C_COMPILER:PATH="${PREFIX}/bin/clang" \
-    -DCMAKE_CXX_COMPILER:PATH="${PREFIX}/bin/clang++" \
     -DLLVM_CONFIG_PATH:PATH="${PREFIX}/bin/llvm-config" \
     "${SRC_DIR}"
 

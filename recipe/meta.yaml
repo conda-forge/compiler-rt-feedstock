@@ -24,12 +24,13 @@ requirements:
     - {{ compiler('cxx') }}   # [not osx]
     - python
   host:
-    - clangdev =={{ version }}
-    - llvmdev =={{ version }}
+    - clangdev {{ version }}
+    - llvmdev {{ version }}
+    - libcxx {{ cxx_compiler_version }}  # [osx]
   run:
     - libcxx >={{ cxx_compiler_version }}  # [osx]
   run_constrained:
-    - clangdev =={{ version }}
+    - clangdev {{ version }}
 
 test:
   commands:

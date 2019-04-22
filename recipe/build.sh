@@ -2,7 +2,7 @@ if [[ "$target_platform" == "osx-64" ]]; then
     export CONDA_BUILD_SYSROOT_BACKUP=${CONDA_BUILD_SYSROOT}
     conda install -p $BUILD_PREFIX --quiet --yes clangxx_osx-64=${cxx_compiler_version}
     export CONDA_BUILD_SYSROOT=${CONDA_BUILD_SYSROOT_BACKUP}
-    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DDARWIN_osxsim_ARCHS=x86_64"
+    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DDARWIN_osxsim_ARCHS=x86_64 -DCMAKE_LIBTOOL=$LIBTOOL"
 fi
 
 # Prep build
@@ -21,6 +21,7 @@ cmake \
     -DCMAKE_MODULE_PATH:PATH="${PREFIX}/lib/cmake" \
     -DLLVM_CONFIG_PATH:PATH="${PREFIX}/bin/llvm-config" \
     -DPYTHON_EXECUTABLE:PATH="${BUILD_PREFIX}/bin/python" \
+    -DCMAKE_LINKER="$LD" \
     ${EXTRA_CMAKE_ARGS} \
     "${SRC_DIR}"
 

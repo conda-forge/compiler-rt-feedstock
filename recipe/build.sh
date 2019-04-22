@@ -1,3 +1,7 @@
+if [[ "$target_platform" == "osx-64" ]]; then
+    conda install -p $BUILD_PREFIX --quiet --yes clangxx_osx-64=${cxx_compiler_version}
+fi
+
 # Prep build
 cp -R "${PREFIX}/lib/cmake/llvm" "${PREFIX}/lib/cmake/modules/"
 

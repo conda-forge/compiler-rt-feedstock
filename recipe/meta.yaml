@@ -19,10 +19,12 @@ build:
 requirements:
   build:
     - cmake >=3.4.3
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}   # [not osx]
   host:
     - clangdev =={{ version }}
     - llvmdev =={{ version }}
+  run:
+    - libcxx >={{ cxx_compiler_version }}
   run_constrained:
     - clangdev =={{ version }}
 

@@ -13,6 +13,7 @@ source:
   sha256: {{ sha256 }}
   patches:
     - af14bad77d21bdbe48d9ba7eabb0d9edfb812eab.patch
+    - no_codesign.diff
 
 build:
   number: {{ build_number }}

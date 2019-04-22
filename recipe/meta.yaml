@@ -25,7 +25,7 @@ requirements:
     - clangdev =={{ version }}
     - llvmdev =={{ version }}
   run:
-    - libcxx >={{ cxx_compiler_version }}
+    - libcxx >={{ cxx_compiler_version }}  # [osx]
   run_constrained:
     - clangdev =={{ version }}
 
@@ -38,7 +38,15 @@ about:
   home: http://llvm.org/
   license: NCSA
   license_file: LICENSE.TXT
-  summary: C++ standard library
+  summary: compiler-rt runtime libraries
+  description: |
+    builtins - low-level target-specific hooks required by code generation and other
+      runtime components
+    sanitizer runtimes - AddressSanitizer, ThreadSanitizer, UndefinedBehaviorSanitizer,
+      MemorySanitizer, LeakSanitizer, DataFlowSanitizer
+    profile - library which is used to collect coverage information
+    BlocksRuntime - target-independent implementation of Apple "Blocks" runtime
+      interfaces
 
 extra:
   recipe-maintainers:

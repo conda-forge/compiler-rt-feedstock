@@ -1,5 +1,6 @@
 if [[ "$target_platform" == "osx-64" ]]; then
     conda install -p $BUILD_PREFIX --quiet --yes clangxx_osx-64=${cxx_compiler_version}
+    echo ${CONDA_BUILD_SYSROOT}
 fi
 
 # Prep build

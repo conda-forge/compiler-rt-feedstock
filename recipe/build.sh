@@ -4,11 +4,8 @@ if [[ "$target_platform" == "osx-64" ]]; then
     rm $BUILD_PREFIX/lib/libc++.dylib
     rm $BUILD_PREFIX/lib/libc++abi.dylib
     export CONDA_BUILD_SYSROOT=${CONDA_BUILD_SYSROOT_BACKUP}
-    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DCOMPILER_RT_ENABLE_IOS=Off -DCOMPILER_RT_HAS_APP_EXTENSION=off"
+    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DCOMPILER_RT_ENABLE_IOS=Off"
     EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL"
-    # https://bugs.llvm.org/show_bug.cgi?id=38959
-    # https://bugs.llvm.org/show_bug.cgi?id=38958
-    EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DCOMPILER_RT_BUILD_XRAY=Off"
 fi
 
 # Prep build

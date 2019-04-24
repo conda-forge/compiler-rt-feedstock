@@ -1,6 +1,6 @@
 {% set name = "compiler-rt" %}
 {% set version = "8.0.0" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set sha256 = "b435c7474f459e71b2831f1a4e3f1d21203cb9c0172e94e9d9b69f50354f21b1" %}
 
 package:
@@ -13,6 +13,7 @@ source:
   patches:
     - af14bad77d21bdbe48d9ba7eabb0d9edfb812eab.patch
     - no_codesign.diff
+    - macosx_10_9.patch
 
 build:
   number: {{ build_number }}

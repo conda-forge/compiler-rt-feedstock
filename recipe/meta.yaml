@@ -1,61 +1,56 @@
 {% set name = "compiler-rt" %}
-{% set version = "7.0.0" %}
+{% set version = "8.0.0" %}
 {% set build_number = 0 %}
-{% set sha256 = "bdec7fe3cf2c85f55656c07dfb0bd93ae46f2b3dd8f33ff3ad6e7586f4c670d6" %}
+{% set sha256 = "b435c7474f459e71b2831f1a4e3f1d21203cb9c0172e94e9d9b69f50354f21b1" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.src.tar.xz
   url: http://llvm.org/releases/{{ version }}/{{ name }}-{{ version }}.src.tar.xz
   sha256: {{ sha256 }}
+  patches:
+    - af14bad77d21bdbe48d9ba7eabb0d9edfb812eab.patch
+    - no_codesign.diff
 
 build:
   number: {{ build_number }}
-  skip: true  # [not py36]
-  features:   # [win and py36]
-    - vc14    # [win and py36]
+  # https://groups.google.com/forum/#!msg/llvm-dev/cQogF7NZcSw/gOVQDXWmCgAJ
+  skip: true  # [win]
 
 requirements:
   build:
-    - toolchain
-
-    # Temporarily preventing CMake 3.10:
-    # https://github.com/conda-forge/libcxx-feedstock/pull/18#issuecomment-372082075
-    - cmake >=3.4.3,<3.10
-
-    # "compiling .pyc files" fails without this
+    - cmake >=3.4.3
+    - {{ compiler('cxx') }}   # [not osx]
     - python
-    - clangdev =={{ version }}
-    - libcxx =={{ version }}
-
+  host:
+    - clangdev {{ version }}
+    - llvmdev {{ version }}
+    - libcxx {{ cxx_compiler_version }}  # [osx]
   run:
-    - clangdev =={{ version }}
-    - libcxx =={{ version }}
+    - libcxx >={{ cxx_compiler_version }}  # [osx]
+  run_constrained:
+    - clangdev {{ version }}
 
 test:
-  requires:
-    - python {{ environ['PY_VER'] + '*' }}  # [win]
-  files:
-    - test_sources
-    - compile_test.sh   # [unix]
-    - compile_test.bat  # [win]
-
   commands:
-    - if not exist %LIBRARY_INC%\\c++\\v1\\iterator exit 1     # [win]
-
-    - test -f $PREFIX/include/c++/v1/iterator      # [unix]
-
-    - bash compile_test.sh   # [unix]
-    - compile_test.bat       # [win]
+    - if not exist %LIBRARY_INC%\\include\\sanitizer\\asan_interface.h exit 1     # [win]
+    - test -f $PREFIX/include/sanitizer/asan_interface.h                  # [unix]
 
 about:
   home: http://llvm.org/
   license: NCSA
   license_file: LICENSE.TXT
-  summary: C++ standard library
+  summary: compiler-rt runtime libraries
+  description: |
+    builtins - low-level target-specific hooks required by code generation and other
+      runtime components
+    sanitizer runtimes - AddressSanitizer, ThreadSanitizer, UndefinedBehaviorSanitizer,
+      MemorySanitizer, LeakSanitizer, DataFlowSanitizer
+    profile - library which is used to collect coverage information
+    BlocksRuntime - target-independent implementation of Apple "Blocks" runtime
+      interfaces
 
 extra:
   recipe-maintainers:

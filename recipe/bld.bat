@@ -11,6 +11,9 @@ if errorlevel 1 exit 1
 set BUILD_CONFIG=Release
 if errorlevel 1 exit 1
 
+set "CC=cl.exe"
+set "CXX=cl.exe"
+
 cmake ^
     -G "NMake Makefiles" ^
     -DCMAKE_BUILD_TYPE="Release" ^
@@ -19,8 +22,6 @@ cmake ^
     -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH="%LIBRARY_BIN%" ^
     -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH="%LIBRARY_LIB%" ^
     -DCMAKE_MODULE_PATH:PATH="%LIBRARY_LIB%\cmake" ^
-    -DCMAKE_C_COMPILER:PATH="%LIBRARY_BIN%\clang-cl.exe" ^
-    -DCMAKE_CXX_COMPILER:PATH="%LIBRARY_BIN%\clang-cl.exe" ^
     -DLLVM_CONFIG_PATH:PATH="%LIBRARY_BIN%\llvm-config.exe" ^
     "%SRC_DIR%"
 if errorlevel 1 exit 1

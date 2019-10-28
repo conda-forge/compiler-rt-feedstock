@@ -1,9 +1,4 @@
 if [[ "$target_platform" == "osx-64" ]]; then
-    export CONDA_BUILD_SYSROOT_BACKUP=${CONDA_BUILD_SYSROOT}
-    conda install -p $BUILD_PREFIX --quiet --yes clangxx_osx-64=${cxx_compiler_version}
-    rm $BUILD_PREFIX/lib/libc++.dylib
-    rm $BUILD_PREFIX/lib/libc++abi.dylib
-    export CONDA_BUILD_SYSROOT=${CONDA_BUILD_SYSROOT_BACKUP}
     EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DCOMPILER_RT_ENABLE_IOS=Off"
     EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL"
 fi
@@ -14,13 +9,15 @@ cp -R "${PREFIX}/lib/cmake/llvm" "${PREFIX}/lib/cmake/modules/"
 mkdir build
 cd build
 
+INSTALL_PREFIX=${PREFIX}/lib/clang/${PKG_VERSION}
+
 cmake \
     -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE="Release" \
     -DCMAKE_PREFIX_PATH:PATH="${PREFIX}" \
-    -DCMAKE_INSTALL_PREFIX:PATH="${PREFIX}" \
-    -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH="${PREFIX}/lib" \
-    -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH="${PREFIX}/lib" \
+    -DCMAKE_INSTALL_PREFIX:PATH="${INSTALL_PREFIX}" \
+    -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH="${INSTALL_PREFIX}/lib" \
+    -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH="${INSTALL_PREFIX}/lib" \
     -DCMAKE_MODULE_PATH:PATH="${PREFIX}/lib/cmake" \
     -DLLVM_CONFIG_PATH:PATH="${PREFIX}/bin/llvm-config" \
     -DPYTHON_EXECUTABLE:PATH="${BUILD_PREFIX}/bin/python" \

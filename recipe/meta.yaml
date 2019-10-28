@@ -1,6 +1,6 @@
 {% set name = "compiler-rt" %}
 {% set version = "9.0.0" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set sha256 = "56e4cd96dd1d8c346b07b4d6b255f976570c6f2389697347a6c3dcb9e820d10e" %}
 
 package:
@@ -30,13 +30,17 @@ requirements:
     - libcxx {{ cxx_compiler_version }}  # [osx]
   run:
     - libcxx >={{ cxx_compiler_version }}  # [osx]
-  run_constrained:
-    - clangdev {{ version }}
+    - clang {{ version }}
+    - clangxx {{ version }}
 
 test:
+  files:
+    - test.c.in
   commands:
-    - if not exist %LIBRARY_INC%\\include\\sanitizer\\asan_interface.h exit 1     # [win]
-    - test -f $PREFIX/include/sanitizer/asan_interface.h                  # [unix]
+  {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
+    - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
+    - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
+    - test -f $PREFIX/lib/clang/{{ version }}/include/sanitizer/asan_interface.h  # [unix]
 
 about:
   home: http://llvm.org/

@@ -1,6 +1,6 @@
-{% set name = "compiler-rt" %}
+{% set name = "compiler-rt-packages" %}
 {% set version = "9.0.0" %}
-{% set build_number = 1 %}
+{% set build_number = 2 %}
 {% set sha256 = "56e4cd96dd1d8c346b07b4d6b255f976570c6f2389697347a6c3dcb9e820d10e" %}
 
 package:
@@ -28,10 +28,6 @@ requirements:
     - clangdev {{ version }}
     - llvmdev {{ version }}
     - libcxx {{ cxx_compiler_version }}  # [osx]
-  run:
-    - libcxx >={{ cxx_compiler_version }}  # [osx]
-    - clang {{ version }}
-    - clangxx {{ version }}
 
 test:
   files:
@@ -41,6 +37,32 @@ test:
     - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
     - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
     - test -f $PREFIX/lib/clang/{{ version }}/include/sanitizer/asan_interface.h  # [unix]
+
+outputs:
+  - name: compiler-rt_{{ target_platform }}
+    build:
+      noarch: generic
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+      run:
+        - libcxx >={{ cxx_compiler_version }}  # [osx]
+        - clang {{ version }}
+        - clangxx {{ version }}
+      run_constrained:
+        - compiler-rt {{ version }}
+    files:
+      - lib/clang/{{ version }}/lib
+
+  - name: compiler-rt
+    requirements:
+      - libcxx >={{ cxx_compiler_version }}  # [osx]
+      - clang {{ version }}
+      - clangxx {{ version }}
+      - compiler-rt_{{ target_platform }} {{ version }}
+    files:
+      - lib/clang/{{ version }}/share
+      - lib/clang/{{ version }}/include
 
 about:
   home: http://llvm.org/

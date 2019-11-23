@@ -1,6 +1,6 @@
 {% set name = "compiler-rt-packages" %}
 {% set version = "9.0.0" %}
-{% set build_number = 1 %}
+{% set build_number = 2 %}
 {% set sha256 = "56e4cd96dd1d8c346b07b4d6b255f976570c6f2389697347a6c3dcb9e820d10e" %}
 
 package:

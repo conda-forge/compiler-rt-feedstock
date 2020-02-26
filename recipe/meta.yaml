@@ -1,6 +1,6 @@
 {% set name = "compiler-rt-packages" %}
 {% set version = "9.0.1" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set sha256 = "c2bfab95c9986318318363d7f371a85a95e333bc0b34fbfa52edbd3f5e3a9077" %}
 
 package:
@@ -16,8 +16,6 @@ source:
 
 build:
   number: {{ build_number }}
-  # https://groups.google.com/forum/#!msg/llvm-dev/cQogF7NZcSw/gOVQDXWmCgAJ
-  skip: true  # [win]
 
 requirements:
   build:

@@ -7,8 +7,8 @@ if errorlevel 1 exit 1
 set BUILD_CONFIG=Release
 if errorlevel 1 exit 1
 
-set "CC=cl.exe"
-set "CXX=cl.exe"
+set "CC=clang-cl.exe"
+set "CXX=clang-cl.exe"
 
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%PKG_VERSION%"
 

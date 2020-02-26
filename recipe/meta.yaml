@@ -59,8 +59,11 @@ outputs:
       - clangxx {{ version }}
       - compiler-rt_{{ target_platform }} {{ version }}
     files:
-      - lib/clang/{{ version }}/share
-      - lib/clang/{{ version }}/include
+      - lib/clang/{{ version }}/share             # [unix]
+      - lib/clang/{{ version }}/include           # [unix]
+      - Library/lib/clang/{{ version }}/share     # [win]
+      - Library/lib/clang/{{ version }}/include   # [win]
+      - Library/lib/clang/{{ version }}/lib       # [win]
 
 about:
   home: http://llvm.org/

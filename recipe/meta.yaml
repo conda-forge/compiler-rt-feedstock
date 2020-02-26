@@ -1,6 +1,6 @@
 {% set name = "compiler-rt-packages" %}
 {% set version = "9.0.1" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set sha256 = "c2bfab95c9986318318363d7f371a85a95e333bc0b34fbfa52edbd3f5e3a9077" %}
 
 package:
@@ -41,6 +41,11 @@ outputs:
   - name: compiler-rt_{{ target_platform }}
     build:
       noarch: generic
+      ignore_run_exports:
+        - vc
+        - libcxx
+        - libgcc-ng
+        - libstdcxx-ng
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -55,10 +60,12 @@ outputs:
 
   - name: compiler-rt
     requirements:
-      - libcxx >={{ cxx_compiler_version }}  # [osx]
-      - clang {{ version }}
-      - clangxx {{ version }}
-      - compiler-rt_{{ target_platform }} {{ version }}
+      build:
+        - {{ compiler('cxx') }}
+      run:
+        - clang {{ version }}
+        - clangxx {{ version }}
+        - compiler-rt_{{ target_platform }} {{ version }}
     files:
       - lib/clang/{{ version }}/share             # [unix]
       - lib/clang/{{ version }}/include           # [unix]

@@ -1,7 +1,7 @@
 {% set name = "compiler-rt-packages" %}
-{% set version = "9.0.1" %}
-{% set build_number = 3 %}
-{% set sha256 = "c2bfab95c9986318318363d7f371a85a95e333bc0b34fbfa52edbd3f5e3a9077" %}
+{% set version = "10.0.0" %}
+{% set build_number = 0 %}
+{% set sha256 = "6a7da64d3a0a7320577b68b9ca4933bdcab676e898b759850e827333c3282c75" %}
 
 package:
   name: {{ name }}
@@ -46,7 +46,7 @@ outputs:
         - libcxx
         - libgcc-ng
         - libstdcxx-ng
-      detect_binary_files_with_prefix: False   # [win]
+      detect_binary_files_with_prefix: false  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}

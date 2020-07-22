@@ -5,7 +5,7 @@ Home: http://llvm.org/
 
 Package license: NCSA
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: compiler-rt runtime libraries
 
@@ -33,7 +33,7 @@ Current build status
     <td>Drone</td>
     <td>
       <a href="https://cloud.drone.io/conda-forge/compiler-rt-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/master.svg?label=Linux">
+        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/compiler-rt-feedstock/master.svg?label=Linux">
       </a>
     </td>
   </tr>

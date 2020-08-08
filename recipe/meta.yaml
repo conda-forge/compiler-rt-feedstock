@@ -58,6 +58,10 @@ outputs:
         - compiler-rt {{ version }}
     files:
       - lib/clang/{{ version }}/lib
+    test:
+      commands:
+        - echo {{ MACOSX_DEPLOYMENT_TARGET }}
+
 
   - name: compiler-rt
     build:
@@ -75,6 +79,9 @@ outputs:
       - Library/lib/clang/{{ version }}/share     # [win]
       - Library/lib/clang/{{ version }}/include   # [win]
       - Library/lib/clang/{{ version }}/lib       # [win]
+    test:
+      commands:
+        - echo {{ MACOSX_DEPLOYMENT_TARGET }}
 
 about:
   home: http://llvm.org/

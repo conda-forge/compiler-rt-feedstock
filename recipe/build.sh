@@ -9,10 +9,10 @@ if [[ "$cross_platform" == "osx-arm64" ]]; then
     export MACOSX_DEPLOYMENT_TARGET=11.0
 fi
 if [[ "$cross_platform" == osx* ]]; then
-    EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL -DCMAKE_LINKER=ld64.lld"
-    LDFLAGS="$LDFLAGS -fuse-ld=lld"
+    EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL"
     export CC=$PREFIX/bin/clang
     export CXX=$PREFIX/bin/clang++
+    rm -rf $LD
 fi
 if [[ "$cross_platform" == linux* ]]; then
     export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
@@ -38,7 +38,6 @@ cmake \
     -DCMAKE_MODULE_PATH:PATH="${PREFIX}/lib/cmake" \
     -DLLVM_CONFIG_PATH:PATH="${PREFIX}/bin/llvm-config" \
     -DPYTHON_EXECUTABLE:PATH="${BUILD_PREFIX}/bin/python" \
-    -DCMAKE_LINKER="$LD" \
     ${EXTRA_CMAKE_ARGS} \
     "${SRC_DIR}"
 

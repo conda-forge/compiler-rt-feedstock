@@ -1,22 +1,15 @@
 set -x
 
-if [[ "$cross_platform" == "osx-64" ]]; then
-    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DCOMPILER_RT_ENABLE_IOS=Off -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9"
-    export MACOSX_DEPLOYMENT_TARGET=10.9
-fi
-if [[ "$cross_platform" == "osx-arm64" ]]; then
-    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=arm64;arm64e -DCOMPILER_RT_ENABLE_IOS=Off -DCMAKE_OSX_DEPLOYMENT_TARGET=10.16 -DCOMPILER_RT_BUILD_SANITIZERS=no"
-    export MACOSX_DEPLOYMENT_TARGET=11.0
-    unset CFLAGS
-    unset CXXFLAGS
-fi
-if [[ "$cross_platform" == osx* ]]; then
+if [[ "$target_platform" == "osx-arm64" ]]; then
+    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64;arm64 -DCOMPILER_RT_ENABLE_IOS=Off -DCMAKE_OSX_DEPLOYMENT_TARGET=10.16 -DCOMPILER_RT_BUILD_SANITIZERS=no"
     EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL -DCOMPILER_RT_BUILD_XRAY=no"
     export CC=$PREFIX/bin/clang
     export CXX=$PREFIX/bin/clang++
+    unset CFLAGS
+    unset CXXFLAGS
     rm -rf $LD
 fi
-if [[ "$cross_platform" == linux* ]]; then
+if [[ "$target_platform" == linux* ]]; then
     export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
     export CPPFLAGS="$CPPFLAGS -D__STDC_FORMAT_MACROS=1"
     export CXXFLAGS="$CXXFLAGS -D__STDC_FORMAT_MACROS=1"

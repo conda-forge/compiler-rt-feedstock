@@ -34,12 +34,11 @@ test:
   commands:
   {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
     - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
-    - echo {{ cross_platform }}
     - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
     - test -f $PREFIX/lib/clang/{{ '.'.join(version.split('.')[:3]) }}/include/sanitizer/asan_interface.h  # [unix]
 
 outputs:
-  - name: compiler-rt_{{ cross_platform }}
+  - name: compiler-rt_{{ target_platform }}
     build:
       noarch: generic
       ignore_run_exports:
@@ -62,7 +61,6 @@ outputs:
     test:
       commands:
         - echo {{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}
-        - echo {{ cross_platform }}
 
   - name: compiler-rt
     requirements:

@@ -1,0 +1,14 @@
+channel_sources:
+- conda-forge/label/llvm_rc,conda-forge,defaults
+channel_targets:
+- conda-forge llvm_rc
+cxx_compiler:
+- vs2017
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- '3.7'
+target_platform:
+- win-64

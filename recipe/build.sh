@@ -1,3 +1,5 @@
+set -x
+
 if [[ "$cross_platform" == "osx-64" ]]; then
     EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DCOMPILER_RT_ENABLE_IOS=Off -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9"
     export MACOSX_DEPLOYMENT_TARGET=10.9

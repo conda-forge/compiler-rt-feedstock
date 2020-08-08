@@ -6,11 +6,7 @@ cross_platform:
   - linux-ppc64le          # [ppc64le]
   - win-64                 # [win]
 MACOSX_DEPLOYMENT_TARGET:  # [osx]
-  - 10.9                   # [osx]
   - 11.0                   # [osx]
-zip_keys:                  # [osx]
-  - - cross_platform       # [osx]
-    - MACOSX_DEPLOYMENT_TARGET  # [osx]
 cxx_compiler:
   - clang_bootstrap  # [osx]
   - gxx              # [linux]

@@ -71,17 +71,17 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_MACOSX_DEPLOYMENT_TARGET10.9cross_platformosx-64target_platformosx-64</td>
+              <td>osx_64_cross_platformosx-64target_platformosx-64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=osx&configuration=osx_64_MACOSX_DEPLOYMENT_TARGET10.9cross_platformosx-64target_platformosx-64" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-64target_platformosx-64" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_MACOSX_DEPLOYMENT_TARGET11.0cross_platformosx-arm64target_platformosx-64</td>
+              <td>osx_64_cross_platformosx-arm64target_platformosx-64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=osx&configuration=osx_64_MACOSX_DEPLOYMENT_TARGET11.0cross_platformosx-arm64target_platformosx-64" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-arm64target_platformosx-64" alt="variant">
                 </a>
               </td>
             </tr><tr>

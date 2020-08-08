@@ -1,11 +1,11 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
+- '11.0'
 channel_sources:
 - conda-forge/label/llvm_rc,conda-forge,defaults
 channel_targets:
 - conda-forge llvm_rc
 cross_platform:
-- osx-64
+- osx-arm64
 cxx_compiler:
 - clang_bootstrap
 cxx_compiler_version:
@@ -22,6 +22,3 @@ python:
 - '3.7'
 target_platform:
 - osx-64
-zip_keys:
-- - cross_platform
-  - MACOSX_DEPLOYMENT_TARGET

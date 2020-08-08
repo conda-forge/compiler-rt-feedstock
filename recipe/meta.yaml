@@ -25,7 +25,7 @@ requirements:
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
-    - libcxx {{ cxx_compiler_version }}  # [osx]
+    - libcxx   # [osx]
 
 test:
   files:

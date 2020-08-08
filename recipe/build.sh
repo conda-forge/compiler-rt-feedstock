@@ -1,5 +1,9 @@
-if [[ "$target_platform" == "osx-64" ]]; then
+if [[ "$cross_platform" == "osx-64" ]]; then
     EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=x86_64 -DCOMPILER_RT_ENABLE_IOS=Off"
+    EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL"
+fi
+if [[ "$cross_platform" == "osx-arm64" ]]; then
+    EXTRA_CMAKE_ARGS="-DDARWIN_osx_ARCHS=arm64;arm64e -DCOMPILER_RT_ENABLE_IOS=Off"
     EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DDARWIN_macosx_CACHED_SYSROOT=${CONDA_BUILD_SYSROOT} -DCMAKE_LIBTOOL=$LIBTOOL"
 fi
 

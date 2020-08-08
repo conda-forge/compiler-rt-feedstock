@@ -4,6 +4,7 @@ cross_platform:
   - linux-64               # [linux64]
   - linux-aarch64          # [aarch64]
   - linux-ppc64le          # [ppc64le]
+  - win-64                 # [win]
 MACOSX_DEPLOYMENT_TARGET:  # [osx]
   - 10.9                   # [osx]
   - 11.0                   # [osx]
@@ -23,9 +24,9 @@ vc:
 python:
   - 3.7
 c_compiler_version:     # [osx]
-  - "11.0.0"            # [osx]
+  - "10.0.1"            # [osx]
 cxx_compiler_version:   # [osx]
-  - "11.0.0"            # [osx]
+  - "10.0.1"            # [osx]
 
 channel_sources:
   - conda-forge/label/llvm_rc,conda-forge,defaults

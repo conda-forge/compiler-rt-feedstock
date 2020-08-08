@@ -1,14 +1,14 @@
 {% set name = "compiler-rt-packages" %}
-{% set version = "10.0.1" %}
+{% set version = "11.0.0.rc1" %}
 {% set build_number = 0 %}
-{% set sha256 = "d90dc8e121ca0271f0fd3d639d135bfaa4b6ed41e67bd6eb77808f72629658fa" %}
+{% set sha256 = "c686ead7e72cfb74d6c899cdab413a22c6ed3c1dd84af83352e4b3339c211714" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version }}/compiler-rt-{{ version }}.src.tar.xz
+  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
   sha256: {{ sha256 }}
   patches:
     - no_codesign.diff
@@ -35,10 +35,10 @@ test:
   {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
     - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
     - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-    - test -f $PREFIX/lib/clang/{{ version }}/include/sanitizer/asan_interface.h  # [unix]
+    - test -f $PREFIX/lib/clang/{{ '.'.join(version.split('.')[:3]) }}/include/sanitizer/asan_interface.h  # [unix]
 
 outputs:
-  - name: compiler-rt_{{ target_platform }}
+  - name: compiler-rt_{{ cross_platform }}
     build:
       noarch: generic
       ignore_run_exports:
@@ -60,6 +60,8 @@ outputs:
       - lib/clang/{{ version }}/lib
 
   - name: compiler-rt
+    build:
+      skip: True   # [cross_platform != target_platform]
     requirements:
       build:
         - {{ compiler('cxx') }}

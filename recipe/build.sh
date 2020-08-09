@@ -34,6 +34,7 @@ cmake \
     -DCMAKE_MODULE_PATH:PATH="${PREFIX}/lib/cmake" \
     -DLLVM_CONFIG_PATH:PATH="${PREFIX}/bin/llvm-config" \
     -DPYTHON_EXECUTABLE:PATH="${BUILD_PREFIX}/bin/python" \
+    -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=$HOST \
     ${EXTRA_CMAKE_ARGS} \
     "${SRC_DIR}"
 

@@ -21,7 +21,6 @@ requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
-    - ld64   # [osx]
     - python
     - make  # [unix]
   host:

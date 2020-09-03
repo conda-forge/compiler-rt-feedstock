@@ -8,7 +8,6 @@ if [[ "$target_platform" == "osx-64" ]]; then
     export CXX=$PREFIX/bin/clang++
     unset CFLAGS
     unset CXXFLAGS
-    rm -rf $LD
 fi
 if [[ "$target_platform" == linux* ]]; then
     export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
@@ -23,7 +22,7 @@ mkdir build
 cd build
 
 if [[ "${PKG_VERSION}" == *rc* ]]; then
-  PKG_VERSION=${PKG_VERSION::-4}
+  export PKG_VERSION=${PKG_VERSION::${#PKG_VERSION}-4}
 fi
 
 INSTALL_PREFIX=${PREFIX}/lib/clang/${PKG_VERSION}

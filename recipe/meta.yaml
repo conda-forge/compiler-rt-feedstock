@@ -1,5 +1,5 @@
 {% set version = "11.0.0.rc1" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 {% set sha256 = "c686ead7e72cfb74d6c899cdab413a22c6ed3c1dd84af83352e4b3339c211714" %}
 
 package:
@@ -27,15 +27,6 @@ requirements:
     - llvmdev {{ version }}
     - lld  {{ version }}
     - libcxx   # [osx]
-
-test:
-  files:
-    - test.c.in
-  commands:
-  {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
-    - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
-    - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-    - test -f $PREFIX/lib/clang/{{ '.'.join(version.split('.')[:3]) }}/include/sanitizer/asan_interface.h  # [unix]
 
 outputs:
   - name: compiler-rt_{{ target_platform }}
@@ -76,6 +67,14 @@ outputs:
       - Library/lib/clang/{{ version }}/share     # [win]
       - Library/lib/clang/{{ version }}/include   # [win]
       - Library/lib/clang/{{ version }}/lib       # [win]
+    test:
+      files:
+        - test.c.in
+      commands:
+      {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
+        - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
+        - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
+        - test -f $PREFIX/lib/clang/{{ '.'.join(version.split('.')[:3]) }}/include/sanitizer/asan_interface.h  # [unix]
 
 about:
   home: http://llvm.org/

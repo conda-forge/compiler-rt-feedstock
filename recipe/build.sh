@@ -22,6 +22,10 @@ cp -R "${PREFIX}/lib/cmake/llvm" "${PREFIX}/lib/cmake/modules/"
 mkdir build
 cd build
 
+if [[ "${PKG_VERSION}" == *rc1* ]]; then
+  PKG_VERSION=${PKG_VERSION::-4}
+fi
+
 INSTALL_PREFIX=${PREFIX}/lib/clang/${PKG_VERSION}
 
 cmake \

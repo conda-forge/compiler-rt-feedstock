@@ -1,5 +1,5 @@
-MACOSX_DEPLOYMENT_TARGET:  # [osx]
-  - 11.0                   # [osx]
+MACOSX_SDK_VERSION:  # [osx]
+  - 11.0             # [osx]
 cxx_compiler:
   - clang_bootstrap  # [osx]
   - gxx              # [linux]
@@ -13,9 +13,9 @@ vc:
 python:
   - 3.7
 c_compiler_version:     # [osx]
-  - "10.0.1"            # [osx]
+  - "11.0.0"            # [osx]
 cxx_compiler_version:   # [osx]
-  - "10.0.1"            # [osx]
+  - "11.0.0"            # [osx]
 
 channel_sources:
   - conda-forge/label/llvm_rc,conda-forge,defaults

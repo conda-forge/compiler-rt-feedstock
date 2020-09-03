@@ -22,7 +22,7 @@ cp -R "${PREFIX}/lib/cmake/llvm" "${PREFIX}/lib/cmake/modules/"
 mkdir build
 cd build
 
-if [[ "${PKG_VERSION}" == *rc1* ]]; then
+if [[ "${PKG_VERSION}" == *rc* ]]; then
   PKG_VERSION=${PKG_VERSION::-4}
 fi
 

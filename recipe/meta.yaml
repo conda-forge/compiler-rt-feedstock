@@ -1,6 +1,6 @@
 {% set version = "11.0.0.rc1" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
-{% set build_number = 1 %}
+{% set build_number = 2 %}
 {% set sha256 = "c686ead7e72cfb74d6c899cdab413a22c6ed3c1dd84af83352e4b3339c211714" %}
 
 package:
@@ -50,10 +50,11 @@ outputs:
       run_constrained:
         - compiler-rt {{ version }}
     files:
-      - lib/clang/{{ version }}/lib
+      - lib/clang/{{ prod_ver }}/lib
     test:
       commands:
         - echo {{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}
+        - test -f $PREFIX/lib/clang/{{ prod_ver }}/lib/darwin/libclang_rt.osx.a  # [osx]
 
   - name: compiler-rt
     requirements:

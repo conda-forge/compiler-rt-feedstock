@@ -1,4 +1,5 @@
 {% set version = "11.0.0.rc1" %}
+{% set prod_ver = '.'.join(version.split('.')[:3]) %}
 {% set build_number = 1 %}
 {% set sha256 = "c686ead7e72cfb74d6c899cdab413a22c6ed3c1dd84af83352e4b3339c211714" %}
 
@@ -41,8 +42,9 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+      host:
       run:
-        - libcxx >={{ cxx_compiler_version }}  # [osx]
+        - libcxx >={{ cxx_compiler_version }}.a0  # [osx]
         - clang {{ version }}
         - clangxx {{ version }}
       run_constrained:
@@ -57,13 +59,14 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+      host:
       run:
         - clang {{ version }}
         - clangxx {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
-      - lib/clang/{{ version }}/share             # [unix]
-      - lib/clang/{{ version }}/include           # [unix]
+      - lib/clang/{{ prod_ver }}/share             # [unix]
+      - lib/clang/{{ prod_ver }}/include           # [unix]
       - Library/lib/clang/{{ version }}/share     # [win]
       - Library/lib/clang/{{ version }}/include   # [win]
       - Library/lib/clang/{{ version }}/lib       # [win]
@@ -74,7 +77,7 @@ outputs:
       {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
         - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
         - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-        - test -f $PREFIX/lib/clang/{{ '.'.join(version.split('.')[:3]) }}/include/sanitizer/asan_interface.h  # [unix]
+        - test -f $PREFIX/lib/clang/{{ prod_ver }}/include/sanitizer/asan_interface.h  # [unix]
 
 about:
   home: http://llvm.org/

@@ -8,8 +8,10 @@ if [[ "$target_platform" == "osx-64" ]]; then
     export CXX=$PREFIX/bin/clang++
     unset CFLAGS
     unset CXXFLAGS
-    rm -rf $LD
+    export CFLAGS="-v"
+    export CXXFLAGS="-v"
 fi
+
 if [[ "$target_platform" == linux* ]]; then
     export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
     export CPPFLAGS="$CPPFLAGS -D__STDC_FORMAT_MACROS=1"

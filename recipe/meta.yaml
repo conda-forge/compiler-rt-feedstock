@@ -26,7 +26,6 @@ requirements:
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
-    - lld  {{ version }}
     - libcxx   # [osx]
 
 outputs:

@@ -30,6 +30,7 @@ INSTALL_PREFIX=${PREFIX}/lib/clang/${PKG_VERSION}
 cmake \
     -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE="Release" \
+    ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH:PATH="${PREFIX}" \
     -DCMAKE_INSTALL_PREFIX:PATH="${INSTALL_PREFIX}" \
     -DCMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH="${INSTALL_PREFIX}/lib" \
@@ -38,7 +39,6 @@ cmake \
     -DLLVM_CONFIG_PATH:PATH="${PREFIX}/bin/llvm-config" \
     -DPYTHON_EXECUTABLE:PATH="${BUILD_PREFIX}/bin/python" \
     -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=$HOST \
-    ${CMAKE_ARGS} \
     "${SRC_DIR}"
 
 # Build step

@@ -1,3 +1,5 @@
+MACOSX_SDK_VERSION:  # [osx]
+  - 11.0             # [osx]
 cxx_compiler:
   - clang_bootstrap  # [osx]
   - gxx              # [linux]
@@ -8,9 +10,10 @@ c_compiler:
   - vs2017           # [win]
 vc:
   - 14
-python:
-  - 3.7
+channel_sources:
+  - conda-forge/label/llvm_rc,conda-forge,defaults  # [not (osx and arm64)]
+  - conda-forge/label/llvm_rc,https://conda-web.anaconda.org/conda-forge  # [osx and arm64]
 c_compiler_version:     # [osx]
-  - "10.0.0"             # [osx]
+  - "11.0.0"            # [osx]
 cxx_compiler_version:   # [osx]
-  - "10.0.0"             # [osx]
+  - "11.0.0"            # [osx]

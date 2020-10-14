@@ -10,14 +10,9 @@ c_compiler:
   - vs2017           # [win]
 vc:
   - 14
-python:
-  - 3.7
 c_compiler_version:     # [osx]
-  - "11.0.0"            # [osx]
+  - "11.0.0"            # [osx and arm64]
+  - "10.0.0"            # [osx and x86_64]
 cxx_compiler_version:   # [osx]
-  - "11.0.0"            # [osx]
-
-channel_sources:
-  - conda-forge/label/llvm_rc,conda-forge,defaults
-channel_targets:
-  - conda-forge llvm_rc
+  - "11.0.0"            # [osx and arm64]
+  - "10.0.0"            # [osx and x86_64]

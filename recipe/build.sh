@@ -49,7 +49,7 @@ cmake \
     "${SRC_DIR}"
 
 # Build step
-make -j$CPU_COUNT VERBOSE=1
+make -j$CPU_COUNT VERBOSE=1 -k
 
 # Install step
 make install -j$CPU_COUNT

@@ -30,7 +30,7 @@ diff --git a/lib/xray/xray_utils.h b/lib/xray/xray_utils.h
 index eafa16e..a8dad83 100644
 --- a/lib/xray/xray_utils.h
 +++ b/lib/xray/xray_utils.h
-@@ -20,6 +20,38 @@
+@@ -20,6 +20,39 @@
  #include <sys/types.h>
  #include <utility>
  
@@ -38,7 +38,17 @@ index eafa16e..a8dad83 100644
 +#include <time.h>
 +#include <mach/clock.h>
 +#include <mach/mach.h>
-+int alt_clock_gettime(int clock_id, timespec *ts) {
++
++#if defined __APPLE__ && __x86_64__ && __MAC_OS_X_VERSION_MIN_REQUIRED < 101200 // less than macOS 10.12
++  #define clock_gettime alt_clock_gettime
++#endif
++#if defined __APPLE__ && __MAC_OS_X_VERSION_MAX_ALLOWED < 101200
++  #define CLOCK_REALTIME CALENDAR_CLOCK
++  #define CLOCK_MONOTONIC SYSTEM_CLOCK
++  typedef int clockid_t;
++#endif
++
++int alt_clock_gettime(clockid_t clock_id, timespec *ts) {
 +  clock_serv_t cclock;
 +  mach_timespec_t mts;
 +  host_get_clock_service(mach_host_self(), clock_id, &cclock);
@@ -53,15 +63,6 @@ index eafa16e..a8dad83 100644
 +   e.g. OS X (before Sierra), OpenBSD etc */
 +#if !defined(MAP_ANONYMOUS) && defined(MAP_ANON)
 +#define MAP_ANONYMOUS MAP_ANON
-+#endif
-+
-+#if defined __APPLE__ && __x86_64__ && __MAC_OS_X_VERSION_MIN_REQUIRED < 101200 // less than macOS 10.12
-+  #define clock_gettime alt_clock_gettime
-+#endif
-+#if defined __APPLE__ && __MAC_OS_X_VERSION_MAX_ALLOWED < 101200
-+  #define CLOCK_REALTIME CALENDAR_CLOCK
-+  #define CLOCK_MONOTONIC SYSTEM_CLOCK
-+  typedef int clockid_t;
 +#endif
 +
 +#endif

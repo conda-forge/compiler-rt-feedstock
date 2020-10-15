@@ -9,6 +9,12 @@ if [[ "$target_platform" == osx-* ]]; then
     ln -sf $(which $LD) $BUILD_PREFIX/bin/ld
 fi
 
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+    CMAKE_ARGS="$CMAKE_ARGS -DLLVM_BINARY_DIR=${PREFIX} -DLLVM_TOOLS_BINARY_DIR=${PREFIX}/bin -DLLVM_LIBRARY_DIR=${PREFIX}/lib"
+    CMAKE_ARGS="$CMAKE_ARGS -DLLVM_INCLUDE_DIR=${PREFIX}/include -DLLVM_CONFIG_PATH=${BUILD_PREFIX}/bin/llvm-config"
+    CMAKE_ARGS="$CMAKE_ARGS -DLLVM_TABLEGEN_EXE=${BUILD_PREFIX}/bin/llvm-tblgen"
+fi
+
 if [[ "$target_platform" == linux* ]]; then
     export CFLAGS="$CFLAGS -D__STDC_FORMAT_MACROS=1"
     export CPPFLAGS="$CPPFLAGS -D__STDC_FORMAT_MACROS=1"

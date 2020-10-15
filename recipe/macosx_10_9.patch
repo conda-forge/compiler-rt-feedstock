@@ -30,7 +30,7 @@ diff --git a/lib/xray/xray_utils.h b/lib/xray/xray_utils.h
 index eafa16e..a8dad83 100644
 --- a/lib/xray/xray_utils.h
 +++ b/lib/xray/xray_utils.h
-@@ -20,6 +20,36 @@
+@@ -20,6 +20,38 @@
  #include <sys/types.h>
  #include <utility>
  
@@ -59,6 +59,8 @@ index eafa16e..a8dad83 100644
 +  #define clock_gettime alt_clock_gettime
 +  #define CLOCK_REALTIME CALENDAR_CLOCK
 +  #define CLOCK_MONOTONIC SYSTEM_CLOCK
++#endif
++#if defined __APPLE__ && __MAC_OS_X_VERSION_MAX_ALLOWED < 101200
 +  typedef int clockid_t;
 +#endif
 +

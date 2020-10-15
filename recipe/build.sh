@@ -9,6 +9,8 @@ if [[ "$target_platform" == osx-* ]]; then
     unset CXXFLAGS
     ln -sf $(which $LIPO) $BUILD_PREFIX/bin/lipo
     ln -sf $(which $LD) $BUILD_PREFIX/bin/ld
+    # Use the system libc++ which has dual arch
+    cp ${CONDA_BUILD_SYSROOT}/usr/lib/libc++.tbd ${PREFIX}/lib/
 fi
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
@@ -58,3 +60,4 @@ make install -j$CPU_COUNT
 
 # Clean up after build
 rm -rf "${PREFIX}/lib/cmake/modules"
+rm -rf "${PREFIX}/lib/libc++.tbd"

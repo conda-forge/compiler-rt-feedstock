@@ -57,10 +57,10 @@ index eafa16e..a8dad83 100644
 +
 +#if defined __APPLE__ && __x86_64__ && __MAC_OS_X_VERSION_MIN_REQUIRED < 101200 // less than macOS 10.12
 +  #define clock_gettime alt_clock_gettime
-+  #define CLOCK_REALTIME CALENDAR_CLOCK
-+  #define CLOCK_MONOTONIC SYSTEM_CLOCK
 +#endif
 +#if defined __APPLE__ && __MAC_OS_X_VERSION_MAX_ALLOWED < 101200
++  #define CLOCK_REALTIME CALENDAR_CLOCK
++  #define CLOCK_MONOTONIC SYSTEM_CLOCK
 +  typedef int clockid_t;
 +#endif
 +

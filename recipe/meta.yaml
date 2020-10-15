@@ -1,6 +1,6 @@
 {% set version = "11.0.0" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
-{% set build_number = 1 %}
+{% set build_number = 2 %}
 {% set sha256 = "374aff82ff573a449f9aabbd330a5d0a441181c535a3599996127378112db234" %}
 
 package:
@@ -45,7 +45,6 @@ outputs:
         - {{ compiler('cxx') }}
       host:
       run:
-        - libcxx >={{ cxx_compiler_version }}.a0  # [osx]
         - clang {{ version }}
         - clangxx {{ version }}
       run_constrained:

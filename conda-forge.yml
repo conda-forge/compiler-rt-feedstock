@@ -2,3 +2,6 @@ provider:
   linux_ppc64le: default
   linux_aarch64: default
 conda_forge_output_validation: true
+channel_priority: flexible
+build_platform:
+  osx_arm64: osx_64

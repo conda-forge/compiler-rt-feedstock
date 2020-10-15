@@ -13,6 +13,7 @@ source:
   patches:
     - no_codesign.diff
     - macosx_10_9.patch
+    - cross.diff
 
 build:
   number: {{ build_number }}

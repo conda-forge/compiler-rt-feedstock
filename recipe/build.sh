@@ -11,6 +11,7 @@ if [[ "$target_platform" == osx-* ]]; then
     ln -sf $(which $LD) $BUILD_PREFIX/bin/ld
     # Use the system libc++ which has dual arch
     cp ${CONDA_BUILD_SYSROOT}/usr/lib/libc++.tbd ${PREFIX}/lib/
+    rm ${PREFIX}/lib/libc++.dylib
 fi
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then

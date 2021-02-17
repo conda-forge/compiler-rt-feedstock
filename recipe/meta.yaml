@@ -1,7 +1,7 @@
-{% set version = "11.0.1" %}
+{% set version = "11.1.0" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
 {% set build_number = 0 %}
-{% set sha256 = "087be3f1116e861cd969c9b0b0903c27028b52eaf45157276f50a9c2500687fc" %}
+{% set sha256 = "def1fc00c764cd3abbba925c712ac38860a756a43b696b291f46fee09e453274" %}
 
 package:
   name: compiler-rt-packages

@@ -1,7 +1,5 @@
 {% set version = "13.0.0" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
-{% set build_number = 0 %}
-{% set sha256 = "4c3602d76c7868a96b30c36165c4b7643e2a20173fced7e071b4baeb2d74db3f" %}
 
 package:
   name: compiler-rt-packages
@@ -9,14 +7,14 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: {{ sha256 }}
+  sha256: 4c3602d76c7868a96b30c36165c4b7643e2a20173fced7e071b4baeb2d74db3f
   patches:
     - no_codesign.diff
     - macosx_10_9.patch
     - cross.diff
 
 build:
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   build:

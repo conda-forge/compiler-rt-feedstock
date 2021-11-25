@@ -9,9 +9,9 @@ source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
   sha256: 4c3602d76c7868a96b30c36165c4b7643e2a20173fced7e071b4baeb2d74db3f
   patches:
-    - no_codesign.diff
-    - macosx_10_9.patch
-    - cross.diff
+    - patches/0001-no-code-sign.patch
+    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-set-cmake-paths.patch
 
 build:
   number: 0

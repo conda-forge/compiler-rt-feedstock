@@ -1,17 +1,17 @@
-From 254b821a520b720be3d83e393424c5924dac112c Mon Sep 17 00:00:00 2001
+From c875dfed5452f1ea743881188c048590b37e7fc0 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Wed, 14 Oct 2020 20:06:05 -0500
 Subject: [PATCH 3/3] set cmake paths
 
 ---
- /cmake/Modules/CompilerRTUtils.cmake | 5 +++--
+ cmake/Modules/CompilerRTUtils.cmake | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a//cmake/Modules/CompilerRTUtils.cmake b//cmake/Modules/CompilerRTUtils.cmake
-index f61d487e93a0..8c2c188fb7e9 100644
---- a//cmake/Modules/CompilerRTUtils.cmake
-+++ b//cmake/Modules/CompilerRTUtils.cmake
-@@ -292,11 +292,12 @@ macro(load_llvm_config)
+diff --git a/cmake/Modules/CompilerRTUtils.cmake b/cmake/Modules/CompilerRTUtils.cmake
+index 5543e3c6afc6..988bf2ff1e0f 100644
+--- a/cmake/Modules/CompilerRTUtils.cmake
++++ b/cmake/Modules/CompilerRTUtils.cmake
+@@ -373,11 +373,12 @@ macro(load_llvm_config)
        OUTPUT_VARIABLE CONFIG_OUTPUT)
      if(NOT HAD_ERROR)
        string(STRIP "${CONFIG_OUTPUT}" LLVM_CMAKE_PATH_FROM_LLVM_CONFIG)
@@ -24,8 +24,8 @@ index f61d487e93a0..8c2c188fb7e9 100644
      endif()
 +    set(LLVM_CMAKE_PATH ${LLVM_CMAKE_PATH2} CACHE STRING "Path to LLVM cmake files")
  
-     list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_PATH}")
-     # Get some LLVM variables from LLVMConfig.
+     set(LLVM_CMAKE_INCLUDE_FILE "${LLVM_CMAKE_PATH}/LLVMConfig.cmake")
+     if (EXISTS "${LLVM_CMAKE_INCLUDE_FILE}")
 -- 
 2.32.0.windows.2
 

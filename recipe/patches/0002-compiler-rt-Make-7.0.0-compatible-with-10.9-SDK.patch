@@ -1,17 +1,17 @@
-From de5983f932b85ad00f1ef8617250b2143bd8b5c0 Mon Sep 17 00:00:00 2001
+From fab7f16f1f1b764bbbdbbb3c135802762f61a99c Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Tue, 16 Oct 2018 21:23:44 -0500
 Subject: [PATCH 2/3] compiler-rt: Make 7.0.0 compatible with 10.9 SDK
 
 ---
- /lib/xray/xray_buffer_queue.h |  7 +++++
- /lib/xray/xray_utils.h        | 33 ++++++++++++++++++++++++
+ lib/xray/xray_buffer_queue.h |  7 +++++
+ lib/xray/xray_utils.h        | 33 ++++++++++++++++++++++++
  2 files changed, 40 insertions(+)
 
-diff --git a//lib/xray/xray_buffer_queue.h b//lib/xray/xray_buffer_queue.h
+diff --git a/lib/xray/xray_buffer_queue.h b/lib/xray/xray_buffer_queue.h
 index e1739d050f3d..38288e35ae62 100644
---- a//lib/xray/xray_buffer_queue.h
-+++ b//lib/xray/xray_buffer_queue.h
+--- a/lib/xray/xray_buffer_queue.h
++++ b/lib/xray/xray_buffer_queue.h
 @@ -21,6 +21,13 @@
  #include <cstddef>
  #include <cstdint>
@@ -26,10 +26,10 @@ index e1739d050f3d..38288e35ae62 100644
  namespace __xray {
  
  /// BufferQueue implements a circular queue of fixed sized buffers (much like a
-diff --git a//lib/xray/xray_utils.h b//lib/xray/xray_utils.h
+diff --git a/lib/xray/xray_utils.h b/lib/xray/xray_utils.h
 index 333826168c0d..637ab17f4805 100644
---- a//lib/xray/xray_utils.h
-+++ b//lib/xray/xray_utils.h
+--- a/lib/xray/xray_utils.h
++++ b/lib/xray/xray_utils.h
 @@ -24,6 +24,39 @@
  #include <zircon/types.h>
  #endif

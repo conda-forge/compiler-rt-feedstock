@@ -22,21 +22,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://travis-ci.com/conda-forge/compiler-rt-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/compiler-rt-feedstock/master.svg?label=macOS">
-      </a>
-    </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/compiler-rt-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/compiler-rt-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -105,7 +91,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt_linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt_win--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_win-64.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_win-64.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_win-64.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) |
 
 Installing compiler-rt-packages
 ===============================
@@ -117,10 +103,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with:
+Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt_win-64` can be installed with:
 
 ```
-conda install compiler-rt compiler-rt_linux-64
+conda install compiler-rt compiler-rt_win-64
 ```
 
 It is possible to list all of the versions of `compiler-rt` available on your platform with:
@@ -133,7 +119,8 @@ conda search compiler-rt --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
@@ -194,6 +181,7 @@ Feedstock Maintainers
 =====================
 
 * [@SylvainCorlay](https://github.com/SylvainCorlay/)
+* [@h-vetinari](https://github.com/h-vetinari/)
 * [@inducer](https://github.com/inducer/)
 * [@isuruf](https://github.com/isuruf/)
 * [@jakirkham](https://github.com/jakirkham/)

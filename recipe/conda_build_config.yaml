@@ -12,9 +12,6 @@ c_compiler:
   - vs2017           # [win]
 vc:
   - 14
-channel_sources:
-  - conda-forge/label/llvm_rc,conda-forge,defaults  # [not (osx and arm64)]
-  - https://conda-web.anaconda.org/conda-forge  # [osx and arm64]
 c_compiler_version:     # [osx]
   - "11.0.0"            # [osx]
 cxx_compiler_version:   # [osx]

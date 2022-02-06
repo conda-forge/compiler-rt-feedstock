@@ -1,7 +1,5 @@
-{% set version = "12.0.1" %}
+{% set version = "13.0.1" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
-{% set build_number = 0 %}
-{% set sha256 = "b4c8d5f2a802332987c1c0a95b5afb35b1a66a96fe44add4e4ed4792c4cba0a4" %}
 
 package:
   name: compiler-rt-packages
@@ -9,14 +7,14 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: {{ sha256 }}
+  sha256: 7b33955031f9a9c5d63077dedb0f99d77e4e7c996266952c1cec55626dca5dfc
   patches:
-    - no_codesign.diff
-    - macosx_10_9.patch
-    - cross.diff
+    - patches/0001-no-code-sign.patch
+    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-set-cmake-paths.patch
 
 build:
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   build:
@@ -100,3 +98,4 @@ extra:
     - inducer
     - jakirkham
     - isuruf
+    - h-vetinari

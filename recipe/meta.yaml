@@ -1,7 +1,5 @@
-{% set version = "11.0.0.rc1" %}
+{% set version = "13.0.1" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
-{% set build_number = 2 %}
-{% set sha256 = "c686ead7e72cfb74d6c899cdab413a22c6ed3c1dd84af83352e4b3339c211714" %}
 
 package:
   name: compiler-rt-packages
@@ -9,24 +7,25 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: {{ sha256 }}
+  sha256: 7b33955031f9a9c5d63077dedb0f99d77e4e7c996266952c1cec55626dca5dfc
   patches:
-    - no_codesign.diff
-    - macosx_10_9.patch
+    - patches/0001-no-code-sign.patch
+    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-set-cmake-paths.patch
 
 build:
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
-    - python
+    - python *
     - make  # [unix]
+    - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
-    - lld  {{ version }}
     - libcxx   # [osx]
 
 outputs:
@@ -44,7 +43,6 @@ outputs:
         - {{ compiler('cxx') }}
       host:
       run:
-        - libcxx >={{ cxx_compiler_version }}.a0  # [osx]
         - clang {{ version }}
         - clangxx {{ version }}
       run_constrained:
@@ -100,3 +98,4 @@ extra:
     - inducer
     - jakirkham
     - isuruf
+    - h-vetinari

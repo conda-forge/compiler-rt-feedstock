@@ -1,4 +1,4 @@
-{% set version = "14.0.0.rc2" %}
+{% set version = "14.0.0.rc4" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: 4d07dce6ff45be7177830dafbc5bec4661fae090117cb4768536d22d07ca0d80
+  sha256: dcaa0b22652c01b39fec51b1cde1dd5d70981c548373ece348ffada3b255e068
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch

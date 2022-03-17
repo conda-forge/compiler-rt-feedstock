@@ -1,5 +1,8 @@
 set -x
 
+# Workaround https://github.com/llvm/llvm-project/issues/53281
+cp llvm-project/cmake/Modules/* cmake/modules/
+
 if [[ "$target_platform" == osx-* ]]; then
     ls -al ${CONDA_BUILD_SYSROOT}
     CMAKE_ARGS="$CMAKE_ARGS -DDARWIN_osx_ARCHS=x86_64;arm64 -DCOMPILER_RT_ENABLE_IOS=Off"

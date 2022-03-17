@@ -6,12 +6,16 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: dcaa0b22652c01b39fec51b1cde1dd5d70981c548373ece348ffada3b255e068
-  patches:
-    - patches/0001-no-code-sign.patch
-    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
-    - patches/0003-set-cmake-paths.patch
+  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
+    sha256: dcaa0b22652c01b39fec51b1cde1dd5d70981c548373ece348ffada3b255e068
+    patches:
+      - patches/0001-no-code-sign.patch
+      - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+      - patches/0003-set-cmake-paths.patch
+  # Workaround for https://github.com/llvm/llvm-project/issues/53281
+  - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
+    sha256: fa67da2200ec0a7dc99122f5f0e9aed74b0fec80e47061840f1173eb8a78055f
+    folder: llvm-project
 
 build:
   number: 0

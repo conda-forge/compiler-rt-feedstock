@@ -1,6 +1,7 @@
 set -x
 
 # Workaround https://github.com/llvm/llvm-project/issues/53281
+mkdir -p cmake/modules
 cp llvm-project/cmake/Modules/* cmake/modules/
 
 if [[ "$target_platform" == osx-* ]]; then

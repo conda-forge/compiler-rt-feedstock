@@ -6,16 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: dcaa0b22652c01b39fec51b1cde1dd5d70981c548373ece348ffada3b255e068
-    patches:
-      - patches/0001-no-code-sign.patch
-      - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
-      - patches/0003-set-cmake-paths.patch
-  # Workaround for https://github.com/llvm/llvm-project/issues/53281
-  - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-    sha256: fa67da2200ec0a7dc99122f5f0e9aed74b0fec80e47061840f1173eb8a78055f
-    folder: llvm-project
+  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
+  sha256: ca833d5ca97b2d46053f6d2759fcd9ec3201201275e0c2119a4680356f5b0a15
+  patches:
+    - patches/0001-no-code-sign.patch
+    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-set-cmake-paths.patch
 
 build:
   number: 0
@@ -85,7 +81,7 @@ outputs:
 about:
   home: http://llvm.org/
   license: NCSA
-  license_file: LICENSE.TXT
+  license_file: compiler-rt/LICENSE.TXT
   summary: compiler-rt runtime libraries
   description: |
     builtins - low-level target-specific hooks required by code generation and other

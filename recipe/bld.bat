@@ -1,9 +1,5 @@
 @echo on
 
-REM workaround https://github.com/llvm/llvm-project/issues/53281
-xcopy llvm-project\cmake\Modules\* cmake\modules\
-if %ERRORLEVEL% neq 0 exit 1
-
 mkdir build
 cd build
 
@@ -19,7 +15,7 @@ cmake ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^
     -DCMAKE_MODULE_PATH:PATH="%LIBRARY_LIB%\cmake" ^
     -DLLVM_CONFIG_PATH:PATH="%LIBRARY_BIN%\llvm-config.exe" ^
-    "%SRC_DIR%"
+    "%SRC_DIR%"\compiler-rt
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Build step

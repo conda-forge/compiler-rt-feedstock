@@ -1,16 +1,16 @@
-From 41c5c5a3754ffb8c56677a7f4ba7109061ca1645 Mon Sep 17 00:00:00 2001
+From 604e73cc003a7680265e3b9d63725932c3e14110 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Wed, 14 Oct 2020 20:06:05 -0500
 Subject: [PATCH 3/3] set cmake paths
 
 ---
- cmake/Modules/CompilerRTUtils.cmake | 5 +++--
+ compiler-rt/cmake/Modules/CompilerRTUtils.cmake | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/cmake/Modules/CompilerRTUtils.cmake b/cmake/Modules/CompilerRTUtils.cmake
+diff --git a/compiler-rt/cmake/Modules/CompilerRTUtils.cmake b/compiler-rt/cmake/Modules/CompilerRTUtils.cmake
 index 052095801aae..21085fb99c49 100644
---- a/cmake/Modules/CompilerRTUtils.cmake
-+++ b/cmake/Modules/CompilerRTUtils.cmake
+--- a/compiler-rt/cmake/Modules/CompilerRTUtils.cmake
++++ b/compiler-rt/cmake/Modules/CompilerRTUtils.cmake
 @@ -373,11 +373,12 @@ macro(load_llvm_config)
        OUTPUT_VARIABLE CONFIG_OUTPUT)
      if(NOT HAD_ERROR)

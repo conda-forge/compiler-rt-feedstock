@@ -1,9 +1,5 @@
 set -x
 
-# Workaround https://github.com/llvm/llvm-project/issues/53281
-mkdir -p cmake/modules
-cp llvm-project/cmake/Modules/* cmake/modules/
-
 if [[ "$target_platform" == osx-* ]]; then
     ls -al ${CONDA_BUILD_SYSROOT}
     CMAKE_ARGS="$CMAKE_ARGS -DDARWIN_osx_ARCHS=x86_64;arm64 -DCOMPILER_RT_ENABLE_IOS=Off"
@@ -54,7 +50,7 @@ cmake \
     -DCMAKE_MODULE_PATH:PATH="${PREFIX}/lib/cmake" \
     -DPYTHON_EXECUTABLE:PATH="${BUILD_PREFIX}/bin/python" \
     -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=$HOST \
-    "${SRC_DIR}"
+    "${SRC_DIR}"/compiler-rt
 
 # Build step
 make -j$CPU_COUNT VERBOSE=1 -k

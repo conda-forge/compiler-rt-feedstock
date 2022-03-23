@@ -15,6 +15,8 @@ cmake ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^
     -DCMAKE_MODULE_PATH:PATH="%LIBRARY_LIB%\cmake" ^
     -DLLVM_CONFIG_PATH:PATH="%LIBRARY_BIN%\llvm-config.exe" ^
+    -DLLVM_EXTERNAL_LIT="%LIBRARY_BIN%\lit" ^
+    -DCOMPILER_RT_STANDALONE_BUILD=1 ^
     "%SRC_DIR%"\compiler-rt
 if %ERRORLEVEL% neq 0 exit 1
 

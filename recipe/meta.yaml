@@ -83,6 +83,7 @@ about:
   license: NCSA
   license_file: compiler-rt/LICENSE.TXT
   summary: compiler-rt runtime libraries
+  dev_url: https://github.com/llvm/llvm-project
   description: |
     builtins - low-level target-specific hooks required by code generation and other
       runtime components

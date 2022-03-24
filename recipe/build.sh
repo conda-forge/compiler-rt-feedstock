@@ -1,4 +1,5 @@
-set -x
+#!/bin/bash
+set -ex
 
 if [[ "$target_platform" == osx-* ]]; then
     ls -al ${CONDA_BUILD_SYSROOT}

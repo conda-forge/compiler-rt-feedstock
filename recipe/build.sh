@@ -26,9 +26,6 @@ if [[ "$target_platform" == linux* ]]; then
     export CXXFLAGS="$CXXFLAGS -D__STDC_FORMAT_MACROS=1"
 fi
 
-# Prep build
-cp -R "${PREFIX}/lib/cmake/llvm" "${PREFIX}/lib/cmake/modules/"
-
 mkdir build
 cd build
 
@@ -64,5 +61,4 @@ make -j$CPU_COUNT VERBOSE=1 -k
 make install -j$CPU_COUNT
 
 # Clean up after build
-rm -rf "${PREFIX}/lib/cmake/modules"
 rm -rf "${PREFIX}/lib/libc++.tbd"

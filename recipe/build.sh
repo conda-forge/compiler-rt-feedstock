@@ -43,14 +43,19 @@ export CMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -stdlib=libcxx"
 # https://github.com/llvm/llvm-project/blame/llvmorg-14.0.0/compiler-rt/CMakeLists.txt#L607-L608
 CMAKE_ARGS="$CMAKE_ARGS -DCOMPILER_RT_USE_LIBCXX=OFF"
 
+# point compiler-rt to correct C++ stdlib
+if [[ "$target_platform" == osx-* ]]; then
+    CMAKE_ARGS="$CMAKE_ARGS -DCOMPILER_RT_HAS_LIBCXX=1"
+else
+    CMAKE_ARGS="$CMAKE_ARGS -DCOMPILER_RT_HAS_LIBSTDCXX=1"
+fi
+
 cmake \
     -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE="Release" \
     -DLLVM_CONFIG_PATH="$PREFIX/bin/llvm-config" \
     -DLLVM_EXTERNAL_LIT="PREFIX/bin/lit" \
     -DCOMPILER_RT_STANDALONE_BUILD=1 \
-    -DCOMPILER_RT_HAS_LIBCXX=1 \
-    -DHAVE_LIBCXX=1 \
     ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH:PATH="${PREFIX}" \
     -DCMAKE_INSTALL_PREFIX:PATH="${INSTALL_PREFIX}" \

@@ -21,6 +21,7 @@ requirements:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
     - python *
+    - sysroot_linux-64 =2.17  # [linux64]
     - make  # [unix]
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:

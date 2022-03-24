@@ -38,6 +38,9 @@ INSTALL_PREFIX=${PREFIX}/lib/clang/${PKG_VERSION}
 # make sure we use our pre-built libcxx, see
 # https://github.com/llvm/llvm-project/blame/llvmorg-14.0.0/compiler-rt/CMakeLists.txt#L178-L181
 export CMAKE_CXX_FLAGS="$CMAKE_CXX_FLAGS -stdlib=libcxx"
+# the following option is confusingly named; it means not rebuild libcxx, see
+# https://github.com/llvm/llvm-project/blame/llvmorg-14.0.0/compiler-rt/CMakeLists.txt#L607-L608
+CMAKE_ARGS="$CMAKE_ARGS -DCOMPILER_RT_USE_LIBCXX=OFF"
 
 cmake \
     -G "Unix Makefiles" \

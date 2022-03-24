@@ -100,3 +100,4 @@ extra:
     - jakirkham
     - isuruf
     - h-vetinari
+  feedstock-name: compiler-rt

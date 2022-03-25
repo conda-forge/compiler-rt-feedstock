@@ -1,7 +1,7 @@
 From de7d498da68ea055d420bf6a0ce69b3fa91a8c20 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Tue, 16 Oct 2018 21:23:44 -0500
-Subject: [PATCH 2/3] compiler-rt: Make 7.0.0 compatible with 10.9 SDK
+Subject: [PATCH 2/4] compiler-rt: Make 7.0.0 compatible with 10.9 SDK
 
 ---
  compiler-rt/lib/xray/xray_buffer_queue.h |  7 +++++

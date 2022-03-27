@@ -1,13 +1,15 @@
-About compiler-rt-packages
-==========================
+About compiler-rt
+=================
 
 Home: http://llvm.org/
 
 Package license: NCSA
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/compiler-rt-feedstock/blob/main/LICENSE.txt)
 
 Summary: compiler-rt runtime libraries
+
+Development: https://github.com/llvm/llvm-project
 
 builtins - low-level target-specific hooks required by code generation and other
   runtime components
@@ -22,66 +24,59 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://travis-ci.com/conda-forge/compiler-rt-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/compiler-rt-feedstock/master.svg?label=macOS">
-      </a>
-    </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/compiler-rt-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/compiler-rt-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main">
           </a>
         </summary>
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_target_platformlinux-64</td>
+              <td>linux_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=linux&configuration=linux_64_target_platformlinux-64" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_target_platformlinux-aarch64</td>
+              <td>linux_aarch64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_target_platformlinux-aarch64" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_target_platformlinux-ppc64le</td>
+              <td>linux_ppc64le</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_target_platformlinux-ppc64le" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_target_platformosx-64</td>
+              <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=osx&configuration=osx_64_target_platformosx-64" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=osx&configuration=osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_target_platformwin-64</td>
+              <td>osx_arm64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=master&jobName=win&configuration=win_64_target_platformwin-64" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=osx&configuration=osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=win&configuration=win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -98,21 +93,22 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt_linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt_win--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_win-64.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_win-64.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_win-64.svg)](https://anaconda.org/conda-forge/compiler-rt_win-64) |
 
-Installing compiler-rt-packages
-===============================
+Installing compiler-rt
+======================
 
-Installing `compiler-rt-packages` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with:
+Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt_win-64` can be installed with:
 
 ```
-conda install compiler-rt compiler-rt_linux-64
+conda install compiler-rt compiler-rt_win-64
 ```
 
 It is possible to list all of the versions of `compiler-rt` available on your platform with:
@@ -125,7 +121,8 @@ conda search compiler-rt --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
@@ -160,32 +157,33 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating compiler-rt-packages-feedstock
-=======================================
+Updating compiler-rt-feedstock
+==============================
 
-If you would like to improve the compiler-rt-packages recipe or build a new
+If you would like to improve the compiler-rt recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/compiler-rt-packages-feedstock are
+Note that all branches in the conda-forge/compiler-rt-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
 
 Feedstock Maintainers
 =====================
 
 * [@SylvainCorlay](https://github.com/SylvainCorlay/)
+* [@h-vetinari](https://github.com/h-vetinari/)
 * [@inducer](https://github.com/inducer/)
 * [@isuruf](https://github.com/isuruf/)
 * [@jakirkham](https://github.com/jakirkham/)

@@ -1,15 +1,11 @@
-mkdir build
-if errorlevel 1 exit 1
+@echo on
 
+mkdir build
 cd build
-if errorlevel 1 exit 1
 
 set BUILD_CONFIG=Release
-if errorlevel 1 exit 1
-
 set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
-
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%PKG_VERSION%"
 
 cmake ^
@@ -19,16 +15,18 @@ cmake ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^
     -DCMAKE_MODULE_PATH:PATH="%LIBRARY_LIB%\cmake" ^
     -DLLVM_CONFIG_PATH:PATH="%LIBRARY_BIN%\llvm-config.exe" ^
-    "%SRC_DIR%"
-if errorlevel 1 exit 1
+    -DLLVM_EXTERNAL_LIT="%LIBRARY_BIN%\lit" ^
+    -DCOMPILER_RT_STANDALONE_BUILD=1 ^
+    "%SRC_DIR%"\compiler-rt
+if %ERRORLEVEL% neq 0 exit 1
 
 :: Build step
 nmake
-if errorlevel 1 exit 1
+if %ERRORLEVEL% neq 0 exit 1
 
 :: Install step
 nmake install
-if errorlevel 1 exit 1
+if %ERRORLEVEL% neq 0 exit 1
 
 mkdir %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows
 copy %INSTALL_PREFIX%\lib\windows\* %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows\

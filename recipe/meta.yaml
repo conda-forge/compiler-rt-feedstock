@@ -1,32 +1,32 @@
-{% set version = "11.0.0.rc1" %}
+{% set version = "14.0.0.rc4" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
-{% set build_number = 2 %}
-{% set sha256 = "c686ead7e72cfb74d6c899cdab413a22c6ed3c1dd84af83352e4b3339c211714" %}
 
 package:
   name: compiler-rt-packages
   version: {{ version }}
 
 source:
-  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/compiler-rt-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: {{ sha256 }}
+  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
+  sha256: ca833d5ca97b2d46053f6d2759fcd9ec3201201275e0c2119a4680356f5b0a15
   patches:
-    - no_codesign.diff
-    - macosx_10_9.patch
+    - patches/0001-no-code-sign.patch
+    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-set-cmake-paths.patch
+    - patches/0004-guard-use-of-FP_XSTATE_MAGIC1-based-on-glibc-version.patch
 
 build:
-  number: {{ build_number }}
+  number: 0
 
 requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
-    - python
+    - python *
     - make  # [unix]
+    - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
-    - lld  {{ version }}
     - libcxx   # [osx]
 
 outputs:
@@ -44,7 +44,6 @@ outputs:
         - {{ compiler('cxx') }}
       host:
       run:
-        - libcxx >={{ cxx_compiler_version }}.a0  # [osx]
         - clang {{ version }}
         - clangxx {{ version }}
       run_constrained:
@@ -83,8 +82,9 @@ outputs:
 about:
   home: http://llvm.org/
   license: NCSA
-  license_file: LICENSE.TXT
+  license_file: compiler-rt/LICENSE.TXT
   summary: compiler-rt runtime libraries
+  dev_url: https://github.com/llvm/llvm-project
   description: |
     builtins - low-level target-specific hooks required by code generation and other
       runtime components
@@ -100,3 +100,5 @@ extra:
     - inducer
     - jakirkham
     - isuruf
+    - h-vetinari
+  feedstock-name: compiler-rt

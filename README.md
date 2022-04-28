@@ -1,5 +1,5 @@
-About compiler-rt-packages
-==========================
+About compiler-rt
+=================
 
 Home: http://llvm.org/
 
@@ -8,6 +8,8 @@ Package license: NCSA
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/compiler-rt-feedstock/blob/main/LICENSE.txt)
 
 Summary: compiler-rt runtime libraries
+
+Development: https://github.com/llvm/llvm-project
 
 builtins - low-level target-specific hooks required by code generation and other
   runtime components
@@ -93,10 +95,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt_linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
 
-Installing compiler-rt-packages
-===============================
+Installing compiler-rt
+======================
 
-Installing `compiler-rt-packages` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -155,17 +157,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating compiler-rt-packages-feedstock
-=======================================
+Updating compiler-rt-feedstock
+==============================
 
-If you would like to improve the compiler-rt-packages recipe or build a new
+If you would like to improve the compiler-rt recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/compiler-rt-packages-feedstock are
+Note that all branches in the conda-forge/compiler-rt-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.

@@ -1,0 +1,25 @@
+From 822c6b4f756a14c394f3ebdc4aede2f7163c4c2c Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Fri, 25 Mar 2022 11:16:42 +1100
+Subject: [PATCH 4/4] guard use of FP_XSTATE_MAGIC1 based on glibc version
+
+---
+ .../lib/sanitizer_common/sanitizer_platform_limits_posix.cpp    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.cpp b/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.cpp
+index 32b8f47ed633..d050b32d1776 100644
+--- a/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.cpp
++++ b/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.cpp
+@@ -217,7 +217,7 @@ namespace __sanitizer {
+   unsigned struct_sockaddr_sz = sizeof(struct sockaddr);
+ 
+   unsigned ucontext_t_sz(void *ctx) {
+-#    if SANITIZER_GLIBC && SANITIZER_X64
++#    if SANITIZER_GLIBC && SANITIZER_X64 && __GLIBC_PREREQ(2, 16)
+     // See kernel arch/x86/kernel/fpu/signal.c for details.
+     const auto *fpregs = static_cast<ucontext_t *>(ctx)->uc_mcontext.fpregs;
+     // The member names differ across header versions, but the actual layout
+-- 
+2.35.1.windows.2
+

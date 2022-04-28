@@ -80,7 +80,7 @@ outputs:
 
 about:
   home: http://llvm.org/
-  license: NCSA
+  license: Apache-2.0 WITH LLVM-exception
   license_file: compiler-rt/LICENSE.TXT
   summary: compiler-rt runtime libraries
   dev_url: https://github.com/llvm/llvm-project

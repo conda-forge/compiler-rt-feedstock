@@ -54,7 +54,7 @@ cmake \
     -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE="Release" \
     -DLLVM_CONFIG_PATH="$PREFIX/bin/llvm-config" \
-    -DLLVM_EXTERNAL_LIT="PREFIX/bin/lit" \
+    -DLLVM_EXTERNAL_LIT="$PREFIX/bin/lit" \
     -DCOMPILER_RT_STANDALONE_BUILD=1 \
     ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH:PATH="${PREFIX}" \

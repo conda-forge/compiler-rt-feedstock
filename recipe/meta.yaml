@@ -23,6 +23,7 @@ requirements:
     - {{ compiler('cxx') }}
     - python *
     - make  # [unix]
+    - ninja  # [win]
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}

@@ -21,7 +21,8 @@ requirements:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
     - python *
-    - make  # [unix]
+    - make                   # [unix]
+    - ninja                  # [win]
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}

@@ -12,3 +12,8 @@ cxx_compiler:
   - vs2019           # [win]
 vc:
   - 14
+
+channel_sources:
+  - conda-forge/label/llvm_rc,conda-forge
+channel_targets:
+  - conda-forge llvm_rc

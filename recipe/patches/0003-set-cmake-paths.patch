@@ -1,17 +1,17 @@
-From 604e73cc003a7680265e3b9d63725932c3e14110 Mon Sep 17 00:00:00 2001
+From 40978d5b00896f0941802f565887823f27000a34 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Wed, 14 Oct 2020 20:06:05 -0500
-Subject: [PATCH 3/4] set cmake paths
+Subject: [PATCH 3/3] set cmake paths
 
 ---
  compiler-rt/cmake/Modules/CompilerRTUtils.cmake | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/compiler-rt/cmake/Modules/CompilerRTUtils.cmake b/compiler-rt/cmake/Modules/CompilerRTUtils.cmake
-index 052095801aae..21085fb99c49 100644
+index 9b5e03a6607b..0dd216647bef 100644
 --- a/compiler-rt/cmake/Modules/CompilerRTUtils.cmake
 +++ b/compiler-rt/cmake/Modules/CompilerRTUtils.cmake
-@@ -373,11 +373,12 @@ macro(load_llvm_config)
+@@ -374,11 +374,12 @@ macro(load_llvm_config)
        OUTPUT_VARIABLE CONFIG_OUTPUT)
      if(NOT HAD_ERROR)
        string(STRIP "${CONFIG_OUTPUT}" LLVM_CMAKE_DIR_FROM_LLVM_CONFIG)
@@ -27,5 +27,5 @@ index 052095801aae..21085fb99c49 100644
      set(LLVM_CMAKE_INCLUDE_FILE "${LLVM_CMAKE_DIR}/LLVMConfig.cmake")
      if (EXISTS "${LLVM_CMAKE_INCLUDE_FILE}")
 -- 
-2.35.1.windows.2
+2.37.0.windows.1
 

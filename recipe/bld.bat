@@ -21,7 +21,7 @@ cmake ^
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Build step
-nmake
+nmake VERBOSE=1
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Install step

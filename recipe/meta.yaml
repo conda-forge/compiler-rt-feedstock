@@ -28,21 +28,19 @@ requirements:
     - clangdev {{ version }}
     - llvmdev {{ version }}
     - libcxx   # [osx]
+    - zlib
+    - libxml2
 
 outputs:
   - name: compiler-rt_{{ target_platform }}
     build:
       noarch: generic
-      ignore_run_exports:
-        - vc
-        - libcxx
-        - libgcc-ng
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}
       detect_binary_files_with_prefix: false  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
-      host:
       run:
         - clang {{ version }}
         - clangxx {{ version }}

@@ -4,8 +4,3 @@ c_compiler:          # [osx]
   - clang_bootstrap  # [osx]
 cxx_compiler:        # [osx]
   - clang_bootstrap  # [osx]
-
-channel_sources:
-  - conda-forge/label/llvm_rc,conda-forge
-channel_targets:
-  - conda-forge llvm_rc

@@ -20,11 +20,11 @@ cmake -G "Ninja" ^
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Build step
-cmake build .
+ninja -j%CPU_COUNT%
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Install step
-cmake install .
+ninja install
 if %ERRORLEVEL% neq 0 exit 1
 
 mkdir %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows

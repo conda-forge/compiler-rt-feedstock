@@ -25,7 +25,7 @@ ninja -v -j1
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Install step
-nmake install
+ninja install
 if %ERRORLEVEL% neq 0 exit 1
 
 mkdir %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows

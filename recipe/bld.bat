@@ -20,11 +20,11 @@ cmake -G "Ninja" ^
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Build step
-cmake build .
+cmake --build .  --target compiler-rt
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Install step
-cmake install .
+cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
 mkdir %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows

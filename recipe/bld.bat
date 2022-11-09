@@ -8,7 +8,7 @@ set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%PKG_VERSION%"
 
-cmake -G "Ninja" ^
+cmake -G "NMake Makefiles" ^
     -DCMAKE_BUILD_TYPE="Release" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^
@@ -20,11 +20,11 @@ cmake -G "Ninja" ^
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Build step
-cmake --build .  --target compiler-rt
+nmake VERBOSE=1
 if %ERRORLEVEL% neq 0 exit 1
 
 :: Install step
-cmake --install .
+nmake install
 if %ERRORLEVEL% neq 0 exit 1
 
 mkdir %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows

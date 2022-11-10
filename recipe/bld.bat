@@ -8,8 +8,7 @@ set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%PKG_VERSION%"
 
-cmake ^
-    -G "NMake Makefiles" ^
+cmake -G "NMake Makefiles" ^
     -DCMAKE_BUILD_TYPE="Release" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^

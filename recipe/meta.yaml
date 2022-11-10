@@ -1,4 +1,4 @@
-{% set version = "14.0.6" %}
+{% set version = "15.0.4" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
 
 package:
@@ -7,12 +7,11 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: 8b3cfd7bc695bd6cea0f37f53f0981f34f87496e79e2529874fd03a2f9dd3a8a
+  sha256: a3112dca9bdea4095361829910b74fb6b9da8ae6e3500db67c43c540ad6072da
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
     - patches/0003-set-cmake-paths.patch
-    - patches/0004-guard-use-of-FP_XSTATE_MAGIC1-based-on-glibc-version.patch
 
 build:
   number: 0
@@ -22,22 +21,22 @@ requirements:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
     - python *
-    - make  # [unix]
+    - make                   # [unix]
+    - ninja                  # [win]
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
     - libcxx   # [osx]
+    - zlib
+    - libxml2
 
 outputs:
   - name: compiler-rt_{{ target_platform }}
     build:
       noarch: generic
-      ignore_run_exports:
-        - vc
-        - libcxx
-        - libgcc-ng
-        - libstdcxx-ng
+      ignore_run_exports_from:
+        - {{ compiler('cxx') }}
       detect_binary_files_with_prefix: false  # [win]
     requirements:
       build:
@@ -70,14 +69,14 @@ outputs:
       - Library/lib/clang/{{ version }}/share     # [win]
       - Library/lib/clang/{{ version }}/include   # [win]
       - Library/lib/clang/{{ version }}/lib       # [win]
-    #test:
-    #  files:
-    #    - test.c.in
-    #  commands:
-    #  {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
-    #    - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
-    #    - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-    #    - test -f $PREFIX/lib/clang/{{ prod_ver }}/include/sanitizer/asan_interface.h  # [unix]
+    test:
+      # files:
+      #   - test.c.in
+      commands:
+        # {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
+        # - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
+        # - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
+        - test -f $PREFIX/lib/clang/{{ prod_ver }}/include/sanitizer/asan_interface.h  # [unix]
 
 about:
   home: http://llvm.org/

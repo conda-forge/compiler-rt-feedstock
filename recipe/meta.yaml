@@ -41,6 +41,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+      host:
       run:
         - clang {{ version }}
         - clangxx {{ version }}

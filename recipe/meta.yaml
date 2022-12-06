@@ -14,15 +14,14 @@ source:
     - patches/0003-set-cmake-paths.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
     - python *
-    - make                   # [unix]
-    - ninja                  # [win]
+    - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}

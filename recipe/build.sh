@@ -51,7 +51,7 @@ else
 fi
 
 cmake \
-    -G "Unix Makefiles" \
+    -G "Ninja" \
     -DCMAKE_BUILD_TYPE="Release" \
     -DLLVM_CONFIG_PATH="$PREFIX/bin/llvm-config" \
     -DLLVM_EXTERNAL_LIT="$PREFIX/bin/lit" \
@@ -66,10 +66,10 @@ cmake \
     "${SRC_DIR}"/compiler-rt
 
 # Build step
-make -j$CPU_COUNT VERBOSE=1 -k
+cmake --build .
 
 # Install step
-make install -j$CPU_COUNT
+cmake --install .
 
 # Clean up after build
 rm -rf "${PREFIX}/lib/libc++.tbd"

@@ -11,7 +11,6 @@ source:
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
-    - patches/0003-set-cmake-paths.patch
 
 build:
   number: 0

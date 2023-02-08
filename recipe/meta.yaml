@@ -1,4 +1,4 @@
-{% set version = "15.0.0.rc3" %}
+{% set version = "15.0.7" %}
 {% set prod_ver = '.'.join(version.split('.')[:3]) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: 36b3c3cb2baa598192f11a1e00634401a35447b83a2bc12289bb2dcc3cc73520
+  sha256: 8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
@@ -21,8 +21,7 @@ requirements:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
     - python *
-    - make                   # [unix]
-    - ninja                  # [win]
+    - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - clangdev {{ version }}
@@ -41,6 +40,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+      host:
       run:
         - clang {{ version }}
         - clangxx {{ version }}

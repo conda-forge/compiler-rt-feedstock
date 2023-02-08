@@ -4,5 +4,9 @@ channel_targets:
 - conda-forge llvm_rc
 cxx_compiler:
 - vs2019
+libxml2:
+- '2.10'
 target_platform:
 - win-64
+zlib:
+- '1.2'

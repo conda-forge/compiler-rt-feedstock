@@ -13,7 +13,7 @@ source:
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:

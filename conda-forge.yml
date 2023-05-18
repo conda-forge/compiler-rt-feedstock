@@ -1,12 +1,16 @@
-provider:
-  linux_ppc64le: default
-  linux_aarch64: default
-conda_forge_output_validation: true
-channel_priority: flexible
 build_platform:
   osx_arm64: osx_64
+channel_priority: flexible
+conda_build:
+  pkg_format: '2'
+conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-conda_build:
-  pkg_format: '2'
+provider:
+  linux_aarch64: default
+  linux_ppc64le: default
+# due to https://github.com/conda/conda-build/issues/4787
+remote_ci_setup:
+  - conda-forge-ci-setup=3
+  - py-lief<0.12

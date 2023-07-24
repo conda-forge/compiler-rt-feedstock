@@ -1,5 +1,6 @@
 {% set version = "17.0.0.dev0" %}
-{% set prod_ver = '.'.join(version.split('.')[:3]) %}
+# suffixes .rc1, .rc2, etc. are removed (on unix), while .dev0 is not.
+{% set prod_ver = '.'.join(version.split('.')[:3]) if version.split(".")[-1] != "dev0" else version %}
 
 package:
   name: compiler-rt-packages

@@ -47,7 +47,9 @@ outputs:
       run_constrained:
         - compiler-rt {{ version }}
     files:
-      - lib/clang/{{ prod_ver }}/lib
+      - lib/clang/{{ prod_ver }}/lib    # [unix]
+      # avoid "Library\" for noarch output
+      - lib\clang\{{ prod_ver }}\lib    # [win]
     test:
       commands:
         - echo {{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}
@@ -66,6 +68,7 @@ outputs:
     files:
       - lib/clang/{{ prod_ver }}/share             # [unix]
       - lib/clang/{{ prod_ver }}/include           # [unix]
+      # standard windows layout for arch-specific output
       - Library\lib\clang\{{ prod_ver }}\share     # [win]
       - Library\lib\clang\{{ prod_ver }}\include   # [win]
       - Library\lib\clang\{{ prod_ver }}\lib       # [win]

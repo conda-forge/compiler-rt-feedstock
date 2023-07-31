@@ -3,9 +3,12 @@
 mkdir build
 cd build
 
-:: cut off any extensions after "XY.0.0";
-:: mainly aimed at ".rcX", which is not part of the installation path
-set PKG_VERSION=%PKG_VERSION:~0,-4%
+:: strip off ".rcX" suffixes, which are not part of the installation path
+set PKG_VERSION=%PKG_VERSION:.rc1=%
+set PKG_VERSION=%PKG_VERSION:.rc2=%
+set PKG_VERSION=%PKG_VERSION:.rc3=%
+set PKG_VERSION=%PKG_VERSION:.rc4=%
+set PKG_VERSION=%PKG_VERSION:.rc5=%
 
 set BUILD_CONFIG=Release
 set "CC=clang-cl.exe"

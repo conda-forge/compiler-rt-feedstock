@@ -32,5 +32,9 @@ if %ERRORLEVEL% neq 0 exit 1
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
+:: Also install into %PREFIX%\lib (!= %PREFIX%\Library\lib, the default on win)
+:: because compiler-rt_win-64 is noarch and needs to be installable on linux,
+:: where we don't want the "\Library"; aside from removing that directory,
+:: the paths are the same. Separation into proper outputs happens in the recipe.
 mkdir %PREFIX%\lib\clang\%MAJOR_VER%\lib\windows
 copy %INSTALL_PREFIX%\lib\windows\* %PREFIX%\lib\clang\%MAJOR_VER%\lib\windows\

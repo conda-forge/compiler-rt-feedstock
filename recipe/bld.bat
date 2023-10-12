@@ -1,4 +1,5 @@
 @echo on
+setlocal enabledelayedexpansion
 
 mkdir build
 cd build
@@ -38,6 +39,14 @@ if %ERRORLEVEL% neq 0 exit 1
 :: Install step
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
+
+FOR /F "tokens=* USEBACKQ" %%F IN (`clang -print-resource-dir`) DO (
+    set "RESOURCE_DIR=%%F"
+)
+if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
+    echo "Wrong install prefix (%INSTALL_PREFIX%). Should match !RESOURCE_DIR!"
+    exit 1
+)
 
 :: Also install into %PREFIX%\lib (!= %PREFIX%\Library\lib, the default on win)
 :: because compiler-rt_win-64 is noarch and needs to be installable on linux,

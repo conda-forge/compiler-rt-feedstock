@@ -1,4 +1,5 @@
 @echo on
+setlocal enabledelayedexpansion
 
 mkdir build
 cd build
@@ -32,5 +33,18 @@ if %ERRORLEVEL% neq 0 exit 1
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
-mkdir %PREFIX%\lib\clang\%MAJOR_VER%\lib\windows
-copy %INSTALL_PREFIX%\lib\windows\* %PREFIX%\lib\clang\%MAJOR_VER%\lib\windows\
+FOR /F "tokens=* USEBACKQ" %%F IN (`clang -print-resource-dir`) DO (
+    set "RESOURCE_DIR=%%F"
+)
+if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
+    echo "Wrong install prefix (%INSTALL_PREFIX%). Should match !RESOURCE_DIR!"
+    exit 1
+)
+
+:: Also install into %PREFIX%\lib (!= %PREFIX%\Library\lib, the default on win)
+:: because compiler-rt_win-64 is noarch and needs to be installable on linux,
+:: where we don't want the "\Library"; aside from removing that directory,
+:: the paths are the same. Separation into proper outputs happens in the recipe.
+set "INSTALL_PREFIX_NOARCH=%PREFIX%\lib\clang\%MAJOR_VER%"
+mkdir %INSTALL_PREFIX_NOARCH%\lib\windows
+copy %INSTALL_PREFIX%\lib\windows\* %INSTALL_PREFIX_NOARCH%\lib\windows\

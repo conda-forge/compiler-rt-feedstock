@@ -6,7 +6,12 @@ cd build
 set BUILD_CONFIG=Release
 set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
-set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%PKG_VERSION%"
+
+for /f "tokens=1 delims=." %%i in ("%PKG_VERSION%") do (
+  set "MAJOR_VER=%%i"
+)
+
+set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%MAJOR_VER%"
 
 cmake -G Ninja ^
     -DCMAKE_BUILD_TYPE="Release" ^
@@ -27,5 +32,5 @@ if %ERRORLEVEL% neq 0 exit 1
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
-mkdir %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows
-copy %INSTALL_PREFIX%\lib\windows\* %PREFIX%\lib\clang\%PKG_VERSION%\lib\windows\
+mkdir %PREFIX%\lib\clang\%MAJOR_VER%\lib\windows
+copy %INSTALL_PREFIX%\lib\windows\* %PREFIX%\lib\clang\%MAJOR_VER%\lib\windows\

@@ -1,5 +1,5 @@
 {% set version = "16.0.6" %}
-{% set prod_ver = '.'.join(version.split('.')[:3]) %}
+{% set major_ver = version.split('.')[0] %}
 
 package:
   name: compiler-rt-packages
@@ -13,7 +13,7 @@ source:
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -46,11 +46,11 @@ outputs:
       run_constrained:
         - compiler-rt {{ version }}
     files:
-      - lib/clang/{{ prod_ver }}/lib
+      - lib/clang/{{ major_ver }}/lib
     test:
       commands:
         - echo {{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}
-        - test -f $PREFIX/lib/clang/{{ prod_ver }}/lib/darwin/libclang_rt.osx.a  # [osx]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a  # [osx]
 
   - name: compiler-rt
     requirements:
@@ -62,11 +62,11 @@ outputs:
         - clangxx {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
-      - lib/clang/{{ prod_ver }}/share             # [unix]
-      - lib/clang/{{ prod_ver }}/include           # [unix]
-      - Library/lib/clang/{{ version }}/share     # [win]
-      - Library/lib/clang/{{ version }}/include   # [win]
-      - Library/lib/clang/{{ version }}/lib       # [win]
+      - lib/clang/{{ major_ver }}/share             # [unix]
+      - lib/clang/{{ major_ver }}/include           # [unix]
+      - Library/lib/clang/{{ major_ver }}/share     # [win]
+      - Library/lib/clang/{{ major_ver }}/include   # [win]
+      - Library/lib/clang/{{ major_ver }}/lib       # [win]
     test:
       # files:
       #   - test.c.in
@@ -74,7 +74,7 @@ outputs:
         # {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
         # - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
         # - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-        - test -f $PREFIX/lib/clang/{{ prod_ver }}/include/sanitizer/asan_interface.h  # [unix]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h  # [unix]
 
 about:
   home: http://llvm.org/

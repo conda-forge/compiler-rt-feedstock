@@ -24,14 +24,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://app.travis-ci.com/conda-forge/compiler-rt-feedstock">
-        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/compiler-rt-feedstock/main.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -105,14 +98,14 @@ Current release info
 Installing compiler-rt
 ======================
 
-Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `compiler-rt` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with `conda`:
+Once the `conda-forge/label/llvm_rc` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with `conda`:
 
 ```
 conda install compiler-rt compiler-rt_linux-64
@@ -127,26 +120,26 @@ mamba install compiler-rt compiler-rt_linux-64
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:
 
 ```
-conda search compiler-rt --channel conda-forge
+conda search compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 or with `mamba`:
 
 ```
-mamba search compiler-rt --channel conda-forge
+mamba search compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search compiler-rt --channel conda-forge
+mamba repoquery search compiler-rt --channel conda-forge/label/llvm_rc
 
 # List packages depending on `compiler-rt`:
-mamba repoquery whoneeds compiler-rt --channel conda-forge
+mamba repoquery whoneeds compiler-rt --channel conda-forge/label/llvm_rc
 
 # List dependencies of `compiler-rt`:
-mamba repoquery depends compiler-rt --channel conda-forge
+mamba repoquery depends compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 
@@ -168,7 +161,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance

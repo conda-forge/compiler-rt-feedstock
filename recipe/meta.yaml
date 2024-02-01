@@ -1,6 +1,5 @@
-{% set version = "17.0.0.rc3" %}
-# suffixes .rc1, .rc2, etc. are removed (on unix), while .dev0 is not.
-{% set prod_ver = '.'.join(version.split('.')[:3]) if version.split(".")[-1] != "dev0" else version %}
+{% set version = "18.1.0.rc1" %}
+{% set major_ver = version.split('.')[0] %}
 
 package:
   name: compiler-rt-packages
@@ -8,7 +7,7 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: 60493f4e974fcca7b739aea4901af2d957b0eaea34b42815359be59cf6c88fa2
+  sha256: eb1a2751408e4cbb08b152285b23dea00e4a1bc2cd28c0df90fe1ce699671154
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
@@ -47,14 +46,14 @@ outputs:
       run_constrained:
         - compiler-rt {{ version }}
     files:
-      - lib/clang/{{ prod_ver }}/lib    # [unix]
+      - lib/clang/{{ major_ver }}/lib   # [unix]
       # avoid "Library\" for noarch output
-      - lib\clang\{{ prod_ver }}\lib    # [win]
+      - lib\clang\{{ major_ver }}\lib   # [win]
     test:
       commands:
         - echo {{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}
-        - test -f $PREFIX/lib/clang/{{ prod_ver }}/lib/darwin/libclang_rt.osx.a                             # [osx]
-        - if not exist %PREFIX%\lib\clang\{{ prod_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1    # [win]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a                            # [osx]
+        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
 
   - name: compiler-rt
     requirements:
@@ -66,12 +65,12 @@ outputs:
         - clangxx {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
-      - lib/clang/{{ prod_ver }}/share             # [unix]
-      - lib/clang/{{ prod_ver }}/include           # [unix]
+      - lib/clang/{{ major_ver }}/share             # [unix]
+      - lib/clang/{{ major_ver }}/include           # [unix]
       # standard windows layout for arch-specific output
-      - Library\lib\clang\{{ prod_ver }}\share     # [win]
-      - Library\lib\clang\{{ prod_ver }}\include   # [win]
-      - Library\lib\clang\{{ prod_ver }}\lib       # [win]
+      - Library\lib\clang\{{ major_ver }}\share     # [win]
+      - Library\lib\clang\{{ major_ver }}\include   # [win]
+      - Library\lib\clang\{{ major_ver }}\lib       # [win]
     test:
       # files:
       #   - test.c.in
@@ -79,8 +78,8 @@ outputs:
         # {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
         # - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
         # - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-        - test -f $PREFIX/lib/clang/{{ prod_ver }}/include/sanitizer/asan_interface.h                       # [unix]
-        - if not exist %LIBRARY_LIB%\clang\{{ prod_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                      # [unix]
+        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1  # [win]
 
 about:
   home: http://llvm.org/

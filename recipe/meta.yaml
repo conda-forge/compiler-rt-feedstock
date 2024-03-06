@@ -1,4 +1,4 @@
-{% set version = "17.0.6" %}
+{% set version = "18.1.0" %}
 {% set major_ver = version.split('.')[0] %}
 
 package:
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: 58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813
+  sha256: 758a048046ac5024f86c868bb17c631500eed8f8d2677ae6a72ab7ad01602277
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:

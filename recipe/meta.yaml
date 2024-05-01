@@ -19,6 +19,7 @@ requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - python *
     - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
@@ -35,10 +36,12 @@ outputs:
       noarch: generic
       ignore_run_exports_from:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       detect_binary_files_with_prefix: false  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
         - clang {{ version }}
@@ -59,6 +62,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
         - clang {{ version }}

@@ -10,7 +10,6 @@ source:
   sha256: bd4b4cb6374bcd5fc5a3ba60cb80425d29da34f316b8821abc12c0db225cf6b4
   patches:
     - patches/0001-no-code-sign.patch
-    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
 
 build:
   number: 0

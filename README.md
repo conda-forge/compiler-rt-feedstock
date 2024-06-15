@@ -98,14 +98,14 @@ Current release info
 Installing compiler-rt
 ======================
 
-Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `compiler-rt` from the `conda-forge/label/llvm_dev` channel can be achieved by adding `conda-forge/label/llvm_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/llvm_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with `conda`:
+Once the `conda-forge/label/llvm_dev` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with `conda`:
 
 ```
 conda install compiler-rt compiler-rt_linux-64
@@ -120,26 +120,26 @@ mamba install compiler-rt compiler-rt_linux-64
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:
 
 ```
-conda search compiler-rt --channel conda-forge
+conda search compiler-rt --channel conda-forge/label/llvm_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search compiler-rt --channel conda-forge
+mamba search compiler-rt --channel conda-forge/label/llvm_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search compiler-rt --channel conda-forge
+mamba repoquery search compiler-rt --channel conda-forge/label/llvm_dev
 
 # List packages depending on `compiler-rt`:
-mamba repoquery whoneeds compiler-rt --channel conda-forge
+mamba repoquery whoneeds compiler-rt --channel conda-forge/label/llvm_dev
 
 # List dependencies of `compiler-rt`:
-mamba repoquery depends compiler-rt --channel conda-forge
+mamba repoquery depends compiler-rt --channel conda-forge/label/llvm_dev
 ```
 
 

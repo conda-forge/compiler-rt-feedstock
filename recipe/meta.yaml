@@ -1,4 +1,4 @@
-{% set version = "18.1.8" %}
+{% set version = "19.1.0.rc1" %}
 {% set major_ver = version.split('.')[0] %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-  sha256: 09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856
+  sha256: cd3b42caf8e78c497712a661303672c1a6279eb1a5ff8735488087319ab95214
   patches:
     - patches/0001-no-code-sign.patch
 

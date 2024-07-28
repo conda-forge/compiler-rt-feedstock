@@ -1,4 +1,4 @@
-{% set version = "18.1.0.rc4" %}
+{% set version = "19.1.0.rc1" %}
 {% set major_ver = version.split('.')[0] %}
 
 package:
@@ -6,11 +6,10 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-  sha256: bc1d243472ee4868e20760c100049078343a89aa34549c69dbab389c68e0c473
+  url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
+  sha256: cd3b42caf8e78c497712a661303672c1a6279eb1a5ff8735488087319ab95214
   patches:
     - patches/0001-no-code-sign.patch
-    - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
 
 build:
   number: 0
@@ -19,6 +18,7 @@ requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - python *
     - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
@@ -35,10 +35,12 @@ outputs:
       noarch: generic
       ignore_run_exports_from:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       detect_binary_files_with_prefix: false  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
         - clang {{ version }}
@@ -59,6 +61,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
         - clang {{ version }}

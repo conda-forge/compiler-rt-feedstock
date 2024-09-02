@@ -1,7 +1,7 @@
-From bf3c5b20918704c6f07f5aecef840376fd3b0806 Mon Sep 17 00:00:00 2001
+From dd35ef6087b81d9d7fc658f1c35557eec1cb733f Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 22 Apr 2019 02:00:30 -0500
-Subject: [PATCH] no code sign
+Subject: [PATCH 1/2] no code sign
 
 ---
  compiler-rt/cmake/Modules/AddCompilerRT.cmake | 28 -------------------

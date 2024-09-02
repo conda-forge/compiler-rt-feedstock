@@ -11,9 +11,10 @@ source:
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:

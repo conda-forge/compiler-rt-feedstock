@@ -1,7 +1,7 @@
-From 2c5037a75c9daf1f0b27454bd065ff3cde46c9cc Mon Sep 17 00:00:00 2001
+From 41934a6e5c1cef066c412fc900299056faea5168 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Tue, 16 Oct 2018 21:23:44 -0500
-Subject: [PATCH 2/2] compiler-rt: Make 7.0.0 compatible with 10.9 SDK
+Subject: [PATCH 2/3] compiler-rt: Make 7.0.0 compatible with 10.9 SDK
 
 ---
  compiler-rt/lib/xray/xray_buffer_queue.h |  7 +++++
@@ -9,7 +9,7 @@ Subject: [PATCH 2/2] compiler-rt: Make 7.0.0 compatible with 10.9 SDK
  2 files changed, 40 insertions(+)
 
 diff --git a/compiler-rt/lib/xray/xray_buffer_queue.h b/compiler-rt/lib/xray/xray_buffer_queue.h
-index e1739d050f..38288e35ae 100644
+index e1739d050f3d..38288e35ae62 100644
 --- a/compiler-rt/lib/xray/xray_buffer_queue.h
 +++ b/compiler-rt/lib/xray/xray_buffer_queue.h
 @@ -21,6 +21,13 @@
@@ -27,7 +27,7 @@ index e1739d050f..38288e35ae 100644
  
  /// BufferQueue implements a circular queue of fixed sized buffers (much like a
 diff --git a/compiler-rt/lib/xray/xray_utils.h b/compiler-rt/lib/xray/xray_utils.h
-index 333826168c..637ab17f48 100644
+index 333826168c0d..637ab17f4805 100644
 --- a/compiler-rt/lib/xray/xray_utils.h
 +++ b/compiler-rt/lib/xray/xray_utils.h
 @@ -24,6 +24,39 @@
@@ -70,6 +70,3 @@ index 333826168c..637ab17f48 100644
  namespace __xray {
  
  class LogWriter {
--- 
-2.38.1.windows.1
-

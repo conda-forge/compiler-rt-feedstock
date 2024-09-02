@@ -11,14 +11,16 @@ source:
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-compiler-rt-Make-7.0.0-compatible-with-10.9-SDK.patch
+    - patches/0003-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - cmake >=3.4.3
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - python *
     - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
@@ -35,10 +37,12 @@ outputs:
       noarch: generic
       ignore_run_exports_from:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       detect_binary_files_with_prefix: false  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
         - clang {{ version }}
@@ -59,6 +63,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
       run:
         - clang {{ version }}

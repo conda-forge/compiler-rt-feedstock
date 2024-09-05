@@ -1,0 +1,37 @@
+From 3752b27ad235cd1126f72929d982bbecb27985ad Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Mon, 2 Sep 2024 14:30:13 +1100
+Subject: [PATCH 2/2] Revert "Declare _availability_version_check as
+ weak_import instead of looking it"
+
+This reverts commit b653a2823fe4b4c9c6d85cfe119f31d8e70c2fa0.
+---
+ compiler-rt/lib/builtins/os_version_check.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/compiler-rt/lib/builtins/os_version_check.c b/compiler-rt/lib/builtins/os_version_check.c
+index 01fae834ab21..5febb79c0749 100644
+--- a/compiler-rt/lib/builtins/os_version_check.c
++++ b/compiler-rt/lib/builtins/os_version_check.c
+@@ -86,10 +86,6 @@ typedef Boolean (*CFStringGetCStringFuncTy)(CFStringRef, char *, CFIndex,
+                                             CFStringEncoding);
+ typedef void (*CFReleaseFuncTy)(CFTypeRef);
+ 
+-extern __attribute__((weak_import))
+-bool _availability_version_check(uint32_t count,
+-                                 dyld_build_version_t versions[]);
+-
+ static void _initializeAvailabilityCheck(bool LoadPlist) {
+   if (AvailabilityVersionCheck && !LoadPlist) {
+     // New API is supported and we're not being asked to load the plist,
+@@ -98,8 +94,8 @@ static void _initializeAvailabilityCheck(bool LoadPlist) {
+   }
+ 
+   // Use the new API if it's is available.
+-  if (_availability_version_check)
+-    AvailabilityVersionCheck = &_availability_version_check;
++  AvailabilityVersionCheck = (AvailabilityVersionCheckFuncTy)dlsym(
++      RTLD_DEFAULT, "_availability_version_check");
+ 
+   if (AvailabilityVersionCheck && !LoadPlist) {
+     // New API is supported and we're not being asked to load the plist,

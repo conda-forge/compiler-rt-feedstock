@@ -1,4 +1,4 @@
-{% set version = "18.1.8" %}
+{% set version = "19.1.0" %}
 {% set major_ver = version.split('.')[0] %}
 
 package:
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-  sha256: 09c08693a9afd6236f27a2ebae62cda656eba19021ef3f94d59e931d662d4856
+  sha256: 0a08341036ca99a106786f50f9c5cb3fbe458b3b74cab6089fd368d0edb2edfe
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -45,8 +45,8 @@ outputs:
       host:
       run:
         - clang {{ version }}
-        - clangxx {{ version }}
       run_constrained:
+        - clangxx {{ version }}
         - compiler-rt {{ version }}
     files:
       - lib/clang/{{ major_ver }}/lib   # [unix]
@@ -66,7 +66,6 @@ outputs:
       host:
       run:
         - clang {{ version }}
-        - clangxx {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
       - lib/clang/{{ major_ver }}/share             # [unix]

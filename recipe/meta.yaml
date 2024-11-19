@@ -11,6 +11,7 @@ source:
   sha256: 72bb3117472025b4e6a6fd6b04041abc735fedbe7f023e56c0413c0cfeb3ca0c
   patches:
     - patches/0001-no-code-sign.patch
+    - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
   number: 3
@@ -45,8 +46,8 @@ outputs:
       host:
       run:
         - clang {{ version }}
-        - clangxx {{ version }}
       run_constrained:
+        - clangxx {{ version }}
         - compiler-rt {{ version }}
     files:
       - lib/clang/{{ major_ver }}/lib   # [unix]
@@ -66,7 +67,6 @@ outputs:
       host:
       run:
         - clang {{ version }}
-        - clangxx {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
       - lib/clang/{{ major_ver }}/share             # [unix]

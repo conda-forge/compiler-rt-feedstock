@@ -27,6 +27,8 @@ requirements:
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
+    # while we fix CMake metadata for llvmdev
+    - libllvm-c{{ major_ver }}  # [win]
     - libcxx   # [osx]
     - zlib
     - libxml2

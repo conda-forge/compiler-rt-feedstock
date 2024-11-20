@@ -1,4 +1,4 @@
-{% set version = "19.0.0.dev0" %}
+{% set version = "20.0.0.dev0" %}
 {% set major_ver = version.split('.')[0] %}
 
 package:
@@ -7,13 +7,14 @@ package:
 
 source:
   # url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-  url: https://github.com/llvm/llvm-project/archive/3bb25636414ee5b5eaf99c0bdcc191052c9d7ffb.tar.gz
-  sha256: 72bb3117472025b4e6a6fd6b04041abc735fedbe7f023e56c0413c0cfeb3ca0c
+  url: https://github.com/llvm/llvm-project/archive/87bfa58a5a4b85416d2486797d0f21fc67da5cf3.tar.gz
+  sha256: 6453827c61593a987f51a5eaa265f4ccfc60901821c9bbb1c6fd1ac17681f0e3
   patches:
     - patches/0001-no-code-sign.patch
+    - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
@@ -26,6 +27,8 @@ requirements:
   host:
     - clangdev {{ version }}
     - llvmdev {{ version }}
+    # while we fix CMake metadata for llvmdev
+    - libllvm-c{{ major_ver }}  # [win]
     - libcxx   # [osx]
     - zlib
     - libxml2
@@ -45,8 +48,8 @@ outputs:
       host:
       run:
         - clang {{ version }}
-        - clangxx {{ version }}
       run_constrained:
+        - clangxx {{ version }}
         - compiler-rt {{ version }}
     files:
       - lib/clang/{{ major_ver }}/lib   # [unix]
@@ -66,7 +69,6 @@ outputs:
       host:
       run:
         - clang {{ version }}
-        - clangxx {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
       - lib/clang/{{ major_ver }}/share             # [unix]

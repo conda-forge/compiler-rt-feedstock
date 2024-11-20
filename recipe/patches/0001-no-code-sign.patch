@@ -1,17 +1,17 @@
-From df12de3c3a271638a55950feb9c57c7f95b8509b Mon Sep 17 00:00:00 2001
+From 3f0b22d7746015db51f0fc59068683e6c459d45a Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 22 Apr 2019 02:00:30 -0500
-Subject: [PATCH] no code sign
+Subject: [PATCH 1/2] no code sign
 
 ---
  compiler-rt/cmake/Modules/AddCompilerRT.cmake | 31 -------------------
  1 file changed, 31 deletions(-)
 
 diff --git a/compiler-rt/cmake/Modules/AddCompilerRT.cmake b/compiler-rt/cmake/Modules/AddCompilerRT.cmake
-index 298093462f80..52dc54979056 100644
+index 6962b733733a..9afc70e072ab 100644
 --- a/compiler-rt/cmake/Modules/AddCompilerRT.cmake
 +++ b/compiler-rt/cmake/Modules/AddCompilerRT.cmake
-@@ -387,37 +387,6 @@ function(add_compiler_rt_runtime name type)
+@@ -388,37 +388,6 @@ function(add_compiler_rt_runtime name type)
          set_target_properties(${libname} PROPERTIES IMPORT_PREFIX "")
          set_target_properties(${libname} PROPERTIES IMPORT_SUFFIX ".lib")
        endif()

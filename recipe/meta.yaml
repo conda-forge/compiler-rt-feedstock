@@ -1,4 +1,4 @@
-{% set version = "19.1.0.rc4" %}
+{% set version = "20.1.0.rc1" %}
 {% set major_ver = version.split('.')[0] %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-  sha256: 570ea538eae9939e1b008c4e8055227dae3ab58054c74707ad1d5a8cb51536c3
+  sha256: 3b0a5a57aad30f714018ecb0adcc2ec82932481ed35c793787efeed12cbf24c0
   patches:
     - patches/0001-no-code-sign.patch
     - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch

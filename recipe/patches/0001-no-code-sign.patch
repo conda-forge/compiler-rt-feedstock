@@ -1,21 +1,22 @@
-From 3f0b22d7746015db51f0fc59068683e6c459d45a Mon Sep 17 00:00:00 2001
+From a1c3b716141d42dcc56fcc688509f4b62d4c9e05 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 22 Apr 2019 02:00:30 -0500
 Subject: [PATCH 1/2] no code sign
 
 ---
- compiler-rt/cmake/Modules/AddCompilerRT.cmake | 31 -------------------
- 1 file changed, 31 deletions(-)
+ compiler-rt/cmake/Modules/AddCompilerRT.cmake | 32 -------------------
+ 1 file changed, 32 deletions(-)
 
 diff --git a/compiler-rt/cmake/Modules/AddCompilerRT.cmake b/compiler-rt/cmake/Modules/AddCompilerRT.cmake
-index 6962b733733a..9afc70e072ab 100644
+index c3e734f72392..c2666bf3adcf 100644
 --- a/compiler-rt/cmake/Modules/AddCompilerRT.cmake
 +++ b/compiler-rt/cmake/Modules/AddCompilerRT.cmake
-@@ -388,37 +388,6 @@ function(add_compiler_rt_runtime name type)
+@@ -389,38 +389,6 @@ function(add_compiler_rt_runtime name type)
          set_target_properties(${libname} PROPERTIES IMPORT_PREFIX "")
          set_target_properties(${libname} PROPERTIES IMPORT_SUFFIX ".lib")
        endif()
--      if (APPLE AND NOT CMAKE_LINKER MATCHES ".*lld.*")
+-      find_program(CODESIGN codesign)
+-      if (APPLE AND NOT CMAKE_LINKER MATCHES ".*lld.*" AND CODESIGN)
 -        # Apple's linker signs the resulting dylib with an ad-hoc code signature in
 -        # most situations, except:
 -        # 1. Versions of ld64 prior to ld64-609 in Xcode 12 predate this behavior.
@@ -30,7 +31,7 @@ index 6962b733733a..9afc70e072ab 100644
 -        # argument and looking for `invalid argument "linker-signed"` in its output.
 -        # FIXME: Remove this once all supported toolchains support `-o linker-signed`.
 -        execute_process(
--          COMMAND sh -c "codesign -f -s - -o linker-signed this-does-not-exist 2>&1 | grep -q linker-signed"
+-          COMMAND sh -c "${CODESIGN} -f -s - -o linker-signed this-does-not-exist 2>&1 | grep -q linker-signed"
 -          RESULT_VARIABLE CODESIGN_SUPPORTS_LINKER_SIGNED
 -        )
 -
@@ -41,7 +42,7 @@ index 6962b733733a..9afc70e072ab 100644
 -
 -        add_custom_command(TARGET ${libname}
 -          POST_BUILD
--          COMMAND codesign --sign - ${EXTRA_CODESIGN_ARGUMENTS} $<TARGET_FILE:${libname}>
+-          COMMAND ${CODESIGN} --sign - ${EXTRA_CODESIGN_ARGUMENTS} $<TARGET_FILE:${libname}>
 -          WORKING_DIRECTORY ${COMPILER_RT_OUTPUT_LIBRARY_DIR}
 -          COMMAND_EXPAND_LISTS
 -        )

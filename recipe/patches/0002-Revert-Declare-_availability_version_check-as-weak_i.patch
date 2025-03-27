@@ -1,4 +1,4 @@
-From 34de70c223d1ca2577b0974bd675c7446ae48647 Mon Sep 17 00:00:00 2001
+From c564e052feff594636470f2414964fe43e9b7e2b Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Mon, 2 Sep 2024 14:30:13 +1100
 Subject: [PATCH 2/2] Revert "Declare _availability_version_check as

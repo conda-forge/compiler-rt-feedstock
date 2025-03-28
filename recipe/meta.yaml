@@ -18,7 +18,7 @@ build:
 
 requirements:
   build:
-    - cmake >=3.4.3
+    - cmake <4
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - python *

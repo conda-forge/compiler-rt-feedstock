@@ -40,7 +40,7 @@ if %ERRORLEVEL% neq 0 exit 1
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
-FOR /F "tokens=* USEBACKQ" %%F IN (`clang -print-resource-dir`) DO (
+FOR /F "tokens=* USEBACKQ" %%F IN (`%LIBRARY_PREFIX%\bin\clang.exe -print-resource-dir`) DO (
     set "RESOURCE_DIR=%%F"
 )
 if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (

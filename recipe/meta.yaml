@@ -13,7 +13,7 @@ source:
     - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -28,7 +28,7 @@ requirements:
     - llvmdev {{ version }}
     - libcxx   # [osx]
     - zlib
-    - libxml2
+    - libxml2-devel
 
 outputs:
   - name: compiler-rt_{{ target_platform }}

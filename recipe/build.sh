@@ -76,10 +76,11 @@ cmake --install .
 # Clean up after build
 rm -rf "${PREFIX}/lib/libc++.tbd"
 
-if [[ "$target_platform" == "$build_platform" ]]; then
-  RESOURCE_DIR=$(${PREFIX}/bin/clang -print-resource-dir)
-  if [[ "${RESOURCE_DIR}" != "${INSTALL_PREFIX}" ]]; then
-    echo "Wrong install prefix (${INSTALL_PREFIX}). Should match ${RESOURCE_DIR}"
-    exit 1
-  fi
-fi
+# Move this test to clang
+# if [[ "$target_platform" == "$build_platform" ]]; then
+#   RESOURCE_DIR=$(${PREFIX}/bin/clang -print-resource-dir)
+#   if [[ "${RESOURCE_DIR}" != "${INSTALL_PREFIX}" ]]; then
+#     echo "Wrong install prefix (${INSTALL_PREFIX}). Should match ${RESOURCE_DIR}"
+#     exit 1
+#   fi
+# fi

@@ -40,13 +40,14 @@ if %ERRORLEVEL% neq 0 exit 1
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
-FOR /F "tokens=* USEBACKQ" %%F IN (`%LIBRARY_PREFIX%\bin\clang.exe -print-resource-dir`) DO (
-    set "RESOURCE_DIR=%%F"
-)
-if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
-    echo "Wrong install prefix (%INSTALL_PREFIX%). Should match !RESOURCE_DIR!"
-    exit 1
-)
+:: Move this test to clang
+:: FOR /F "tokens=* USEBACKQ" %%F IN (`%LIBRARY_PREFIX%\bin\clang.exe -print-resource-dir`) DO (
+::    set "RESOURCE_DIR=%%F"
+:: )
+:: if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
+::     echo "Wrong install prefix (%INSTALL_PREFIX%). Should match !RESOURCE_DIR!"
+::     exit 1
+:: )
 
 :: Also install into %PREFIX%\lib (!= %PREFIX%\Library\lib, the default on win)
 :: because compiler-rt_win-64 is noarch and needs to be installable on linux,

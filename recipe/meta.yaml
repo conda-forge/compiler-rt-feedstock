@@ -13,7 +13,7 @@ source:
     - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -24,7 +24,6 @@ requirements:
     - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
-    - clangdev {{ version }}
     - llvmdev {{ version }}
     - libcxx   # [osx]
     - zlib
@@ -44,9 +43,7 @@ outputs:
         - {{ stdlib('c') }}
       host:
       run:
-        - clang {{ version }}
       run_constrained:
-        - clangxx {{ version }}
         - compiler-rt {{ version }}
     files:
       - lib/clang/{{ major_ver }}/lib   # [unix]
@@ -54,7 +51,6 @@ outputs:
       - lib\clang\{{ major_ver }}\lib   # [win]
     test:
       commands:
-        - echo {{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}
         - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a                            # [osx]
         - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
 
@@ -65,7 +61,6 @@ outputs:
         - {{ stdlib('c') }}
       host:
       run:
-        - clang {{ version }}
         - compiler-rt_{{ target_platform }} {{ version }}
     files:
       - lib/clang/{{ major_ver }}/share             # [unix]
@@ -78,6 +73,7 @@ outputs:
       # files:
       #   - test.c.in
       commands:
+        # TODO: move this test to clang
         # {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
         # - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
         # - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]

@@ -13,7 +13,7 @@ source:
     - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -30,7 +30,7 @@ requirements:
     - libxml2-devel
 
 outputs:
-  - name: compiler-rt_{{ target_platform }}
+  - name: compiler-rt{{ major_ver }}_{{ target_platform }}
     build:
       noarch: generic
       ignore_run_exports_from:
@@ -44,7 +44,8 @@ outputs:
       host:
       run:
       run_constrained:
-        - compiler-rt {{ version }}
+        # This is when compiler-rt and compiler-rt_{{ target_platform }} split
+        - compiler-rt >=9.0.1
     files:
       - lib/clang/{{ major_ver }}/lib   # [unix]
       # avoid "Library\" for noarch output
@@ -54,14 +55,14 @@ outputs:
         - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a                            # [osx]
         - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
 
-  - name: compiler-rt
+  - name: compiler-rt{{ major_ver }}
     requirements:
       build:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
       host:
       run:
-        - compiler-rt_{{ target_platform }} {{ version }}
+        - compiler-rt{{ major_ver }}_{{ target_platform }} {{ version }}
     files:
       - lib/clang/{{ major_ver }}/share             # [unix]
       - lib/clang/{{ major_ver }}/include           # [unix]
@@ -77,6 +78,32 @@ outputs:
         # {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
         # - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
         # - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                      # [unix]
+        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1  # [win]
+
+  - name: compiler-rt_{{ target_platform }}
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - {{ pin_subpackage("compiler-rt" ~ major_ver ~ "_" ~ target_platform, exact=True) }}
+      run_constrained:
+        - clang {{ version }}
+    test:
+      commands:
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a                            # [osx]
+        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
+
+  - name: compiler-rt
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - {{ pin_subpackage("compiler-rt" ~ major_ver, exact=True) }}
+      run_constrained:
+        - clang {{ version }}
+    test:
+      commands:
         - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                      # [unix]
         - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1  # [win]
 

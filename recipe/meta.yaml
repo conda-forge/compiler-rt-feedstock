@@ -56,6 +56,8 @@ outputs:
         - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
 
   - name: compiler-rt{{ major_ver }}
+    build:
+      noarch: generic
     requirements:
       build:
         - {{ compiler('cxx') }}

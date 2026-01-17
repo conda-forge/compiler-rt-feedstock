@@ -84,3 +84,10 @@ rm -rf "${PREFIX}/lib/libc++.tbd"
 #     exit 1
 #   fi
 # fi
+
+mkdir -p ${PREFIX}/lib
+if [[ "${target_platform}" == "linux-"* ]]; then
+  cp ${INSTALL_PREFIX}/lib/linux/libclang_rt*.so ${PREFIX}/lib
+elif [[ "${target_platform}" == "osx-"* ]]; then
+  cp ${INSTALL_PREFIX}/lib/darwin/libclang_rt*.dylib ${PREFIX}/lib
+fi

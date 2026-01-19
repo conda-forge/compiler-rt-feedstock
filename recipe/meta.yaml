@@ -30,6 +30,29 @@ requirements:
     - libxml2-devel
 
 outputs:
+  - name: libcompiler-rt
+    build:
+      run_exports:
+        - {{ pin_subpackage("libcompiler-rt", max_pin=None) }}
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
+      host:
+      run:
+      run_constrained:
+        # This is when compiler-rt and compiler-rt_{{ target_platform }} split
+        - compiler-rt >=9.0.1
+    files:
+      - lib/libclang_rt*.so        # [linux]
+      - lib/libclang_rt*.dylib     # [osx]
+      - Library/bin/clang_rt*.dll  # [win]
+    test:
+      commands:
+        - test -f $PREFIX/lib/libclang_rt.asan_osx_dynamic.dylib               # [osx]
+        - test -f $PREFIX/lib/libclang_rt.tsan-x86_64.so                       # [linux and x86_64]
+        - if not exist %LIBRARY_BIN%\clang_rt.asan_dynamic-x86_64.dll exit 1   # [win]
+
   - name: compiler-rt{{ major_ver }}_{{ target_platform }}
     build:
       noarch: generic
@@ -98,6 +121,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage("compiler-rt" ~ major_ver, exact=True) }}
+        - {{ pin_subpackage("libcompiler-rt", exact=True) }}
       run_constrained:
         - clang {{ version }}
     test:

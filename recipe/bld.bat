@@ -56,3 +56,6 @@ if %ERRORLEVEL% neq 0 exit 1
 set "INSTALL_PREFIX_NOARCH=%PREFIX%\lib\clang\%MAJOR_VER%"
 mkdir %INSTALL_PREFIX_NOARCH%\lib\windows
 copy %INSTALL_PREFIX%\lib\windows\* %INSTALL_PREFIX_NOARCH%\lib\windows\
+
+mkdir %LIBRARY_BIN%
+copy %INSTALL_PREFIX%\lib\windows\*.dll %LIBRARY_BIN%\

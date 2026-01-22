@@ -93,7 +93,10 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt22-green.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt22__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libcompiler--rt-green.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) |
 
 Installing compiler-rt
 ======================
@@ -105,16 +108,16 @@ conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with `conda`:
+Once the `conda-forge/label/llvm_rc` channel has been enabled, `compiler-rt, compiler-rt22, compiler-rt22_linux-64, compiler-rt_linux-64, libcompiler-rt` can be installed with `conda`:
 
 ```
-conda install compiler-rt compiler-rt_linux-64
+conda install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 or with `mamba`:
 
 ```
-mamba install compiler-rt compiler-rt_linux-64
+mamba install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:
@@ -164,12 +167,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -196,7 +199,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/compiler-rt-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:

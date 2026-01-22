@@ -93,53 +93,55 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt21-green.svg)](https://anaconda.org/conda-forge/compiler-rt21) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt21.svg)](https://anaconda.org/conda-forge/compiler-rt21) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt21.svg)](https://anaconda.org/conda-forge/compiler-rt21) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt21.svg)](https://anaconda.org/conda-forge/compiler-rt21) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt21__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt21_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt21_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt21_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
 
 Installing compiler-rt
 ======================
 
-Installing `compiler-rt` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
+Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
-conda config --add channels conda-forge/label/llvm_rc
+conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `compiler-rt, compiler-rt_linux-64` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt21, compiler-rt21_linux-64, compiler-rt_linux-64` can be installed with `conda`:
 
 ```
-conda install compiler-rt compiler-rt_linux-64
+conda install compiler-rt compiler-rt21 compiler-rt21_linux-64 compiler-rt_linux-64
 ```
 
 or with `mamba`:
 
 ```
-mamba install compiler-rt compiler-rt_linux-64
+mamba install compiler-rt compiler-rt21 compiler-rt21_linux-64 compiler-rt_linux-64
 ```
 
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:
 
 ```
-conda search compiler-rt --channel conda-forge/label/llvm_rc
+conda search compiler-rt --channel conda-forge
 ```
 
 or with `mamba`:
 
 ```
-mamba search compiler-rt --channel conda-forge/label/llvm_rc
+mamba search compiler-rt --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search compiler-rt --channel conda-forge/label/llvm_rc
+mamba repoquery search compiler-rt --channel conda-forge
 
 # List packages depending on `compiler-rt`:
-mamba repoquery whoneeds compiler-rt --channel conda-forge/label/llvm_rc
+mamba repoquery whoneeds compiler-rt --channel conda-forge
 
 # List dependencies of `compiler-rt`:
-mamba repoquery depends compiler-rt --channel conda-forge/label/llvm_rc
+mamba repoquery depends compiler-rt --channel conda-forge
 ```
 
 
@@ -164,12 +166,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -196,7 +198,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/compiler-rt-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:

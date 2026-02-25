@@ -96,6 +96,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt21-green.svg)](https://anaconda.org/conda-forge/compiler-rt21) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt21.svg)](https://anaconda.org/conda-forge/compiler-rt21) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt21.svg)](https://anaconda.org/conda-forge/compiler-rt21) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt21.svg)](https://anaconda.org/conda-forge/compiler-rt21) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt21__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt21_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt21_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt21_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt21_linux-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libcompiler--rt-green.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) |
 
 Installing compiler-rt
 ======================
@@ -107,16 +108,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt21, compiler-rt21_linux-64, compiler-rt_linux-64` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt21, compiler-rt21_linux-64, compiler-rt_linux-64, libcompiler-rt` can be installed with `conda`:
 
 ```
-conda install compiler-rt compiler-rt21 compiler-rt21_linux-64 compiler-rt_linux-64
+conda install compiler-rt compiler-rt21 compiler-rt21_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 or with `mamba`:
 
 ```
-mamba install compiler-rt compiler-rt21 compiler-rt21_linux-64 compiler-rt_linux-64
+mamba install compiler-rt compiler-rt21 compiler-rt21_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:

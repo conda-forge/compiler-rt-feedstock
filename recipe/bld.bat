@@ -21,7 +21,7 @@ for /f "tokens=1 delims=." %%i in ("%PKG_VERSION%") do (
 
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%MAJOR_VER%"
 
-cmake -G Ninja ^
+cmake %CMAKE_ARGS% -G Ninja ^
     -DCMAKE_BUILD_TYPE="Release" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^

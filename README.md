@@ -38,45 +38,17 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>win_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=win&configuration=win%20win_arm64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -94,8 +66,6 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt22-green.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt22__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libcompiler--rt-green.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) |
 
 Installing compiler-rt
@@ -108,16 +78,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt22, compiler-rt22_linux-64, compiler-rt_linux-64, libcompiler-rt` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt22, libcompiler-rt` can be installed with `conda`:
 
 ```
-conda install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
+conda install compiler-rt compiler-rt22 libcompiler-rt
 ```
 
 or with `mamba`:
 
 ```
-mamba install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
+mamba install compiler-rt compiler-rt22 libcompiler-rt
 ```
 
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:

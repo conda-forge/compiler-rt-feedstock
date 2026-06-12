@@ -33,6 +33,9 @@ requirements:
 outputs:
   - name: libcompiler-rt
     build:
+      # clang_rt.asan_dynamic-x86_64.dll is the only DLL for x64;
+      # as of LLVM v22, asan isn't being built for win-arm64
+      skip: true  # [win and arm64]
       run_exports:
         - {{ pin_subpackage("libcompiler-rt", max_pin=None) }}
     requirements:
@@ -52,7 +55,8 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libclang_rt.asan_osx_dynamic.dylib               # [osx]
         - test -f $PREFIX/lib/libclang_rt.tsan-x86_64.so                       # [linux and x86_64]
-        - if not exist %LIBRARY_BIN%\clang_rt.asan_dynamic-x86_64.dll exit 1   # [win]
+        - if not exist %LIBRARY_BIN%\clang_rt.asan_dynamic-x86_64.dll exit 1   # [win and x64_64]
+        - if not exist %LIBRARY_BIN%\clang_rt.asan_dynamic-aarch64.dll exit 1  # [win and arm64]
 
   - name: compiler-rt{{ major_ver }}_{{ target_platform }}
     build:
@@ -77,7 +81,8 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a                            # [osx]
-        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
+        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win and x64_64]
+        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-aarch64.lib exit 1  # [win and arm64]
 
   - name: compiler-rt{{ major_ver }}
     requirements:
@@ -102,8 +107,9 @@ outputs:
         # {% set NEW_TARGET="10." ~ (((MACOSX_DEPLOYMENT_TARGET|default("10.13")).split(".")[1])|int + 1) %}
         # - sed "s/@MACOSX_DEPLOYMENT_TARGET@/{{ NEW_TARGET }}/g" test.c.in > test.c
         # - clang -mmacosx-version-min={{ MACOSX_DEPLOYMENT_TARGET }} test.c  # [osx]
-        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                      # [unix]
-        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1  # [win]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                       # [unix]
+        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win and x64_64]
+        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-aarch64.lib exit 1  # [win and arm64]
 
   - name: compiler-rt_{{ target_platform }}
     build:
@@ -116,19 +122,21 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/clang/{{ major_ver }}/lib/darwin/libclang_rt.osx.a                            # [osx]
-        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win]
+        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win and x64_64]
+        - if not exist %PREFIX%\lib\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-aarch64.lib exit 1  # [win and arm64]
 
   - name: compiler-rt
     requirements:
       run:
         - {{ pin_subpackage("compiler-rt" ~ major_ver, exact=True) }}
-        - {{ pin_subpackage("libcompiler-rt", exact=True) }}
+        - {{ pin_subpackage("libcompiler-rt", exact=True) }}            # [not (win and arm64)]
       run_constrained:
         - clang {{ version }}
     test:
       commands:
-        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                      # [unix]
-        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1  # [win]
+        - test -f $PREFIX/lib/clang/{{ major_ver }}/include/sanitizer/asan_interface.h                       # [unix]
+        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-x86_64.lib exit 1   # [win and x64_64]
+        - if not exist %LIBRARY_LIB%\clang\{{ major_ver }}\lib\windows\clang_rt.builtins-aarch64.lib exit 1  # [win and arm64]
 
 about:
   home: http://llvm.org/

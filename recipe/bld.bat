@@ -15,13 +15,27 @@ set BUILD_CONFIG=Release
 set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
 
+if "%target_platform%" == "win-arm64" (
+    set "CFLAGS=%CFLAGS% --target=aarch64-pc-windows-msvc"
+    set "CXXFLAGS=%CXXFLAGS% --target=aarch64-pc-windows-msvc"
+    set "MT=%BUILD_PREFIX%\Library\bin\llvm-mt.exe"
+    set "RC=%BUILD_PREFIX%\Library\bin\llvm-rc.exe"
+)
+
+:: remove other MSVC installs in the image that interfere
+RMDIR /s /q "C:\Program Files\LLVM" || (echo Ignoring failure to delete C:\Program Files\LLVM)
+RMDIR /s /q "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm" ^
+    || (echo Ignoring failure to delete C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm)
+RMDIR /s /q "C:\Program Files\Microsoft Visual Studio\2026\Enterprise\VC\Tools\Llvm" ^
+    || (echo Ignoring failure to delete C:\Program Files\Microsoft Visual Studio\2026\Enterprise\VC\Tools\Llvm)
+
 for /f "tokens=1 delims=." %%i in ("%PKG_VERSION%") do (
   set "MAJOR_VER=%%i"
 )
 
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%MAJOR_VER%"
 
-cmake %CMAKE_ARGS% -G Ninja ^
+cmake -G Ninja !CMAKE_ARGS! ^
     -DCMAKE_BUILD_TYPE="Release" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^

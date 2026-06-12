@@ -23,6 +23,7 @@ requirements:
     - python *
     - ninja
     - llvmdev {{ version }}  # [build_platform != target_platform]
+    - clang                  # [win]
   host:
     - llvmdev {{ version }}
     - libcxx   # [osx]

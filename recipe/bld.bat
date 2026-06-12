@@ -16,6 +16,7 @@ set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
 
 if "%target_platform%" == "win-arm64" (
+    set "CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_ASM_FLAGS=--target=aarch64-pc-windows-msvc"
     set "CFLAGS=%CFLAGS% --target=aarch64-pc-windows-msvc"
     set "CXXFLAGS=%CXXFLAGS% --target=aarch64-pc-windows-msvc"
     set "MT=%BUILD_PREFIX%\Library\bin\llvm-mt.exe"

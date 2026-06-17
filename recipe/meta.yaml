@@ -13,7 +13,7 @@ source:
     - patches/0002-Revert-Declare-_availability_version_check-as-weak_i.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -22,8 +22,11 @@ requirements:
     - {{ stdlib('c') }}
     - python *
     - ninja
-    - llvmdev {{ version }}  # [build_platform != target_platform]
-    - clang                  # [win]
+    - llvmdev {{ version }}     # [unix and build_platform != target_platform]
+    # win-arm64 needs clang to build, which requires compiler-rt; to break the cycle,
+    # allow older patch versions of llvmdev, for which we already have matching clang
+    - llvmdev {{ major_ver }}   # [win and build_platform != target_platform]
+    - clang                     # [win]
   host:
     - llvmdev {{ version }}
     - libcxx   # [osx]

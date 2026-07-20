@@ -24,7 +24,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/compiler-rt-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/compiler-rt-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -38,27 +45,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/compiler-rt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=4515&branchName=main">
@@ -101,14 +87,14 @@ Current release info
 Installing compiler-rt
 ======================
 
-Installing `compiler-rt` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
+Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
-conda config --add channels conda-forge/label/llvm_rc
+conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `compiler-rt, compiler-rt22, compiler-rt22_linux-64, compiler-rt_linux-64, libcompiler-rt` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `compiler-rt, compiler-rt22, compiler-rt22_linux-64, compiler-rt_linux-64, libcompiler-rt` can be installed with `conda`:
 
 ```
 conda install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
@@ -123,26 +109,26 @@ mamba install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux
 It is possible to list all of the versions of `compiler-rt` available on your platform with `conda`:
 
 ```
-conda search compiler-rt --channel conda-forge/label/llvm_rc
+conda search compiler-rt --channel conda-forge
 ```
 
 or with `mamba`:
 
 ```
-mamba search compiler-rt --channel conda-forge/label/llvm_rc
+mamba search compiler-rt --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search compiler-rt --channel conda-forge/label/llvm_rc
+mamba repoquery search compiler-rt --channel conda-forge
 
 # List packages depending on `compiler-rt`:
-mamba repoquery whoneeds compiler-rt --channel conda-forge/label/llvm_rc
+mamba repoquery whoneeds compiler-rt --channel conda-forge
 
 # List dependencies of `compiler-rt`:
-mamba repoquery depends compiler-rt --channel conda-forge/label/llvm_rc
+mamba repoquery depends compiler-rt --channel conda-forge
 ```
 
 

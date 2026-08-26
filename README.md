@@ -72,18 +72,18 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt-green.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt.svg)](https://anaconda.org/conda-forge/compiler-rt) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt22-green.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt22.svg)](https://anaconda.org/conda-forge/compiler-rt22) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt22__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt22_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt22_linux-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt23-green.svg)](https://anaconda.org/conda-forge/compiler-rt23) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt23.svg)](https://anaconda.org/conda-forge/compiler-rt23) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt23.svg)](https://anaconda.org/conda-forge/compiler-rt23) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt23.svg)](https://anaconda.org/conda-forge/compiler-rt23) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt23__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt23_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt23_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt23_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt23_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt23_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt23_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt23_linux-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-compiler--rt__linux--64-green.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/compiler-rt_linux-64.svg)](https://anaconda.org/conda-forge/compiler-rt_linux-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libcompiler--rt-green.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libcompiler-rt.svg)](https://anaconda.org/conda-forge/libcompiler-rt) |
 
 Installing compiler-rt
 ======================
 
-Installing `compiler-rt` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `compiler-rt` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
@@ -94,7 +94,7 @@ How to use
 <summary>With conda</summary>
 
 ```
-conda install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
+conda install compiler-rt compiler-rt23 compiler-rt23_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 </details>
@@ -103,7 +103,7 @@ conda install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux
 <summary>With mamba</summary>
 
 ```
-mamba install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
+mamba install compiler-rt compiler-rt23 compiler-rt23_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 </details>
@@ -113,9 +113,9 @@ mamba install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux
 
 ```
 # for adding to your local project
-pixi add compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
+pixi add compiler-rt compiler-rt23 compiler-rt23_linux-64 compiler-rt_linux-64 libcompiler-rt
 # for installing globally
-pixi global install compiler-rt compiler-rt22 compiler-rt22_linux-64 compiler-rt_linux-64 libcompiler-rt
+pixi global install compiler-rt compiler-rt23 compiler-rt23_linux-64 compiler-rt_linux-64 libcompiler-rt
 ```
 
 </details>
@@ -129,7 +129,7 @@ It is possible to list all of the versions of `compiler-rt` available on your pl
 <summary>With conda</summary>
 
 ```
-conda search compiler-rt --channel conda-forge
+conda search compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 </details>
@@ -138,7 +138,7 @@ conda search compiler-rt --channel conda-forge
 <summary>With mamba</summary>
 
 ```
-mamba search compiler-rt --channel conda-forge
+mamba search compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 </details>
@@ -147,7 +147,7 @@ mamba search compiler-rt --channel conda-forge
 <summary>With pixi</summary>
 
 ```
-pixi search compiler-rt --channel conda-forge
+pixi search compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 </details>
@@ -157,13 +157,13 @@ pixi search compiler-rt --channel conda-forge
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search compiler-rt --channel conda-forge
+mamba repoquery search compiler-rt --channel conda-forge/label/llvm_rc
 
 # List packages depending on `compiler-rt`:
-mamba repoquery whoneeds compiler-rt --channel conda-forge
+mamba repoquery whoneeds compiler-rt --channel conda-forge/label/llvm_rc
 
 # List dependencies of `compiler-rt`:
-mamba repoquery depends compiler-rt --channel conda-forge
+mamba repoquery depends compiler-rt --channel conda-forge/label/llvm_rc
 ```
 
 </details>

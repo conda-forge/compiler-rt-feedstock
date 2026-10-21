@@ -22,10 +22,7 @@ requirements:
     - {{ stdlib('c') }}
     - python *
     - ninja
-    - llvmdev {{ version }}     # [unix and build_platform != target_platform]
-    # win-arm64 needs clang to build, which requires compiler-rt; to break the cycle,
-    # allow older patch versions of llvmdev, for which we already have matching clang
-    - llvmdev {{ major_ver }}   # [win and build_platform != target_platform]
+    - llvmdev {{ version }}     # [build_platform != target_platform]
     - clang                     # [win]
   host:
     - llvmdev {{ version }}

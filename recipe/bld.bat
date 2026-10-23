@@ -15,13 +15,20 @@ set BUILD_CONFIG=Release
 set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
 
+:: remove other MSVC installs in the image that interfere
+RMDIR /s /q "C:\Program Files\LLVM" || (echo Ignoring failure to delete C:\Program Files\LLVM)
+RMDIR /s /q "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm" ^
+    || (echo Ignoring failure to delete C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm)
+RMDIR /s /q "C:\Program Files\Microsoft Visual Studio\2026\Enterprise\VC\Tools\Llvm" ^
+    || (echo Ignoring failure to delete C:\Program Files\Microsoft Visual Studio\2026\Enterprise\VC\Tools\Llvm)
+
 for /f "tokens=1 delims=." %%i in ("%PKG_VERSION%") do (
   set "MAJOR_VER=%%i"
 )
 
 set "INSTALL_PREFIX=%LIBRARY_PREFIX%\lib\clang\%MAJOR_VER%"
 
-cmake -G Ninja ^
+cmake -G Ninja !CMAKE_ARGS! ^
     -DCMAKE_BUILD_TYPE="Release" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%INSTALL_PREFIX%" ^
@@ -40,13 +47,14 @@ if %ERRORLEVEL% neq 0 exit 1
 cmake --install .
 if %ERRORLEVEL% neq 0 exit 1
 
-FOR /F "tokens=* USEBACKQ" %%F IN (`clang -print-resource-dir`) DO (
-    set "RESOURCE_DIR=%%F"
-)
-if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
-    echo "Wrong install prefix (%INSTALL_PREFIX%). Should match !RESOURCE_DIR!"
-    exit 1
-)
+:: Move this test to clang
+:: FOR /F "tokens=* USEBACKQ" %%F IN (`%LIBRARY_PREFIX%\bin\clang.exe -print-resource-dir`) DO (
+::    set "RESOURCE_DIR=%%F"
+:: )
+:: if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
+::     echo "Wrong install prefix (%INSTALL_PREFIX%). Should match !RESOURCE_DIR!"
+::     exit 1
+:: )
 
 :: Also install into %PREFIX%\lib (!= %PREFIX%\Library\lib, the default on win)
 :: because compiler-rt_win-64 is noarch and needs to be installable on linux,
@@ -55,3 +63,8 @@ if "!RESOURCE_DIR!" NEQ "%INSTALL_PREFIX%" (
 set "INSTALL_PREFIX_NOARCH=%PREFIX%\lib\clang\%MAJOR_VER%"
 mkdir %INSTALL_PREFIX_NOARCH%\lib\windows
 copy %INSTALL_PREFIX%\lib\windows\* %INSTALL_PREFIX_NOARCH%\lib\windows\
+
+if "%target_platform%" == "win-64" (
+    mkdir %LIBRARY_BIN%
+    copy %INSTALL_PREFIX%\lib\windows\*.dll %LIBRARY_BIN%\
+)

@@ -3,7 +3,7 @@ MACOSX_SDK_VERSION:
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '15.5'
+- '11.0'
 channel_sources:
 - conda-forge/label/llvm_dev,conda-forge
 channel_targets:
@@ -11,7 +11,7 @@ channel_targets:
 cxx_compiler:
 - clang_bootstrap
 cxx_compiler_version:
-- '21'
+- '*'
 libxml2_devel:
 - '2.15'
 macos_machine:
